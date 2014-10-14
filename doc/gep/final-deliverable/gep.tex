@@ -16,6 +16,14 @@
 \usepackage{authblk}
 \usepackage{titlesec}
 \usepackage{ifthen}
+\usepackage{pdfpages}
+\usepackage{url}
+
+\usepackage{tocbibind}
+
+%euro currency symbol
+\usepackage{marvosym}
+\DeclareUnicodeCharacter{20AC}{\EUR{}}
 
 \newcommand*{\appendixmore}{%
 	\renewcommand*{\othersectionlevelsformat}[1]{%
@@ -35,7 +43,9 @@
 
 \begin{document}
 	
-	\maketitle
+	%\maketitle
+	
+	\include{title_page}
 	
 	\thispagestyle{empty}
 	\newpage
@@ -48,8 +58,7 @@
 	\include{section_context}
 	
 	\nocite{*}
-	
-	\bibliographystyle{plain}
+	\bibliographystyle{plainurl}
 	\bibliography{references}
 	
 \end{document}
