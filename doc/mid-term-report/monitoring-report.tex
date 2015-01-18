@@ -1,0 +1,56 @@
+% !TeX document-id = {78834bc9-5b2d-4839-9368-11a8c7d7974b}
+% !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape]
+
+\documentclass[a4paper]{scrartcl}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{color}
+\usepackage{minted}
+\usemintedstyle{friendly}
+\usepackage{todonotes}
+\usepackage[section]{placeins}
+\usepackage{authblk}
+\usepackage{titlesec}
+\usepackage{ifthen}
+\usepackage{pdfpages}
+\usepackage{url}
+
+\usepackage{tocbibind}
+
+%euro currency symbol
+\usepackage{marvosym}
+\DeclareUnicodeCharacter{20AC}{\EUR{}}
+
+\setlength{\parskip}{6pt}
+
+\newcommand*{\appendixmore}{%
+	\renewcommand*{\othersectionlevelsformat}[1]{%
+		\ifthenelse{\equal{##1}{section}}{\appendixname~}{}%
+		\csname the##1\endcsname\autodot\enskip}
+	\renewcommand*{\sectionmarkformat}{%
+		\appendixname~\thesection\autodot\enskip}
+}
+
+\begin{document}
+		
+	\include{monitoring-report_title-page}
+	
+	\thispagestyle{empty}
+	\newpage
+	\cleardoublepage
+	
+	\tableofcontents
+	
+	\include{sections/section_context}
+	\include{sections/section_project-management}
+	\include{sections/section_current-status}
+	
+	
+	\bibliographystyle{plainurl}
+	\bibliography{references}
+	
+\end{document}
