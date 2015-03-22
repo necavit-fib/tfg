@@ -29,8 +29,16 @@
 
 \graphicspath{{Pictures/}} % Specifies the directory where pictures are stored
 
+\usepackage{titlesec}
+
+\titlespacing\section{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+\titlespacing\subsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+\titlespacing\subsubsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+
+\setlength{\footnotesep}{0.3cm}
+\setlength{\skip\footins}{1cm}
+
 \usepackage[square, numbers, comma, sort&compress]{natbib} % Use the natbib reference package - read up on this to edit the reference style; if you want text (e.g. Smith et al., 2012) for the in-text references (instead of numbers), remove 'numbers' 
-\hypersetup{urlcolor=blue, colorlinks=true} % Colors hyperlinks in blue - change to black if annoying
 \title{\ttitle} % Defines the thesis title - don't touch this
 
 \begin{document}
@@ -63,34 +71,35 @@
 
 \vspace*{3cm}
 
-%\HRule \\[0.4cm] % Horizontal line
-{\huge \bfseries \ttitle}\\[1cm] % Thesis title
-%\HRule \\[1.5cm] % Horizontal line
+\HRule \\[0.4cm] % Horizontal line
+{\huge \bfseries \ttitle}\\ %[1cm] % Thesis title
+\HRule \\[1.5cm] % Horizontal line
 
-\textsc{Bachelor Degree Thesis}\\[2.5cm] % Thesis type
- 
-\begin{minipage}{0.4\textwidth}
-\begin{flushleft} \large
-\emph{Author:}\\
-\authornames % Author name - remove the \href bracket to remove the link
-\vspace{1cm}
-\end{flushleft}
+\Large{\textsc{Bachelor Degree Thesis}}\\[3cm] % Thesis type
+
+\begin{minipage}[t]{0.45\textwidth}
+	\begin{flushleft} \large
+		\emph{Author:}\\
+		\authornames % Author name - remove the \href bracket to remove the link
+		\vspace{1cm}
+	\end{flushleft}
 \end{minipage}
-\begin{minipage}{0.4\textwidth}
-\begin{flushright} \large
-\emph{Supervisor:} \\
-\supname\\ % Supervisor name - remove the \href bracket to remove the link
-\emph{Department:}\\
-\textsc{\supdept}
-\end{flushright}
-\end{minipage}\\[1.5cm]
+\begin{minipage}[t]{0.45\textwidth}
+	\begin{flushright} \large
+		\emph{Supervisor:} \\
+		\supname\\ % Supervisor name - remove the \href bracket to remove the link
+		\emph{Department:}\\
+		\textsc{\supdept}
+	\end{flushright}
+\end{minipage}\\[2.5cm]
  
-\Large \textsc{\degreename}\\[2cm] % University requirement text
+\Large \textsc{\degreename}\\
+\large \textit{\textsc{\major}}\\[1cm] % University requirement text
 %\textit{in the}\\[0.4cm]
 %\groupname\\\deptname\\[2cm] % Research group name and department name
 
-\textsc{\LARGE \facname}\\[0.5cm] % University name
-\textsc{\Large \univname}\\[1.5cm] % University name
+\textsc{\large \facname}\\ % University name
+\textsc{\large \univname}\\[1cm] % University name
  
 {\large \today}\\ % Date
 %\includegraphics{Logo} % University/department logo - uncomment to place it
@@ -99,33 +108,6 @@
 \end{center}
 
 \end{titlepage}
-
-%----------------------------------------------------------------------------------------
-%	DECLARATION PAGE
-%	Your institution may give you a different text to place here
-%----------------------------------------------------------------------------------------
-
-\Declaration{
-
-\addtocontents{toc}{\vspace{1em}} % Add a gap in the Contents, for aesthetics
-
-I, \authornames, declare that this thesis titled, '\ttitle' and the work presented in it are my own. I confirm that:
-
-\begin{itemize} 
-\item[\tiny{$\blacksquare$}] This work was done wholly or mainly while in candidature for a research degree at this University.
-\item[\tiny{$\blacksquare$}] Where any part of this thesis has previously been submitted for a degree or any other qualification at this University or any other institution, this has been clearly stated.
-\item[\tiny{$\blacksquare$}] Where I have consulted the published work of others, this is always clearly attributed.
-\item[\tiny{$\blacksquare$}] Where I have quoted from the work of others, the source is always given. With the exception of such quotations, this thesis is entirely my own work.
-\item[\tiny{$\blacksquare$}] I have acknowledged all main sources of help.
-\item[\tiny{$\blacksquare$}] Where the thesis is based on work done by myself jointly with others, I have made clear exactly what was done by others and what I have contributed myself.\\
-\end{itemize}
- 
-Signed:\\
-\rule[1em]{25em}{0.5pt} % This prints a line for the signature
- 
-Date:\\
-\rule[1em]{25em}{0.5pt} % This prints a line to write the date
-}
 
 \clearpage % Start a new page
 
@@ -137,10 +119,10 @@ Date:\\
 
 \null\vfill % Add some space to move the quote down the page a bit
 
-\textit{``Thanks to my solid academic training, today I can write hundreds of words on virtually any topic without possessing a shred of information, which is how I got a good job in journalism."}
+\textit{``Non gogoa, han zangoa."}
 
 \begin{flushright}
-Dave Barry
+Basque proverb
 \end{flushright}
 
 \vfill\vfill\vfill\vfill\vfill\vfill\null % Add some space at the bottom to position the quote just right
@@ -155,7 +137,7 @@ Dave Barry
 
 \abstract{\addtocontents{toc}{\vspace{1em}} % Add a gap in the Contents, for aesthetics
 
-The Thesis Abstract is written here (and usually kept to just this page). The page is kept centered vertically so can expand into the blank space above the title too\ldots
+The Thesis Abstract is written here (and usually kept to just this page). The page is kept centered vertically so can expand into the blank space above the title too.
 }
 
 \clearpage % Start a new page
@@ -203,20 +185,6 @@ The acknowledgements and the people to thank go here, don't forget to include yo
 }
 
 %----------------------------------------------------------------------------------------
-%	PHYSICAL CONSTANTS/OTHER DEFINITIONS
-%----------------------------------------------------------------------------------------
-
-\clearpage % Start a new page
-
-\lhead{\emph{Physical Constants}} % Set the left side page header to "Physical Constants"
-
-\listofconstants{lrcl} % Include a list of Physical Constants (a four column table)
-{
-Speed of Light & $c$ & $=$ & $2.997\ 924\ 58\times10^{8}\ \mbox{ms}^{-\mbox{s}}$ (exact)\\
-% Constant Name & Symbol & = & Constant Value (with units) \\
-}
-
-%----------------------------------------------------------------------------------------
 %	SYMBOLS
 %----------------------------------------------------------------------------------------
 
@@ -244,7 +212,7 @@ $\omega$ & angular frequency & rads$^{-1}$ \\
 
 \pagestyle{empty} % Page style needs to be empty for this page
 
-\dedicatory{For/Dedicated to/To my\ldots} % Dedication text
+\dedicatory{Dedicated to my family.} % Dedication text
 
 \addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
 
@@ -294,8 +262,8 @@ $\omega$ & angular frequency & rads$^{-1}$ \\
 
 \lhead{\emph{Bibliography}} % Change the page header to say "Bibliography"
 
+\nocite{*}
 \bibliographystyle{unsrtnat} % Use the "unsrtnat" BibTeX style for formatting the Bibliography
-
 \bibliography{Bibliography} % The references (bibliography) information are stored in the file named "Bibliography.bib"
 
 \end{document}  

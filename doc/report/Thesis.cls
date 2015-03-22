@@ -149,10 +149,24 @@
         keywordstyle=\color{blue},
         commentstyle=\color[rgb]{0.13,0.55,0.13}\em,
         stringstyle=\color[rgb]{0.7,0,0} }
-\usepackage[pdfpagemode={UseOutlines},bookmarks=true,bookmarksopen=true,
-   bookmarksopenlevel=0,bookmarksnumbered=true,hypertexnames=false,
-   colorlinks,linkcolor={blue},citecolor={blue},urlcolor={red},
-   pdfstartview={FitV},unicode,breaklinks=true]{hyperref}
+
+\usepackage[
+	pdfpagemode={UseOutlines},
+	bookmarks=true,
+	bookmarksopen=true,
+	bookmarksopenlevel=0,
+	bookmarksnumbered=true,
+	hypertexnames=false,
+	colorlinks=true,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black,
+	pdfstartview={FitV},
+	unicode,
+	breaklinks=true
+]{hyperref}
+
 \pdfstringdefDisableCommands{
    \let\\\space
 }
@@ -161,6 +175,7 @@
 \newcommand*{\thesistitle}[1]{\def\ttitle{#1}}
 \newcommand*{\examiner}[1]{\def\examname{#1}}
 \newcommand*{\degree}[1]{\def\degreename{#1}}
+\newcommand*{\major}[1]{\def\major{#1}}
 \newcommand*{\authors}[1]{\def\authornames{#1}}
 \newcommand*{\addresses}[1]{\def\addressnames{#1}}
 \newcommand*{\university}[1]{\def\univname{#1}}
@@ -190,7 +205,9 @@
 %-------------------------------------------------   
 \examiner{} % Your examiner's name - this is not currently used anywhere in the template, cite it with \examname if you want it
 %-------------------------------------------------   
-\degree{Bachelor Degree in Informatics Engineering - Major in Computer Science} % Your degree name - this is currently used in the title page and abstract
+\degree{Bachelor Degree in Informatics Engineering} % Your degree name - this is currently used in the title page and abstract
+%-------------------------------------------------   
+\major{Major in Computer Science}
 %-------------------------------------------------   
 \authors{David \textsc{Martínez Rodríguez}} % Your name - this is used in the title page and abstract
 %-------------------------------------------------   
@@ -200,11 +217,11 @@
 %-------------------------------------------------   
 \keywords{} % Keywords for your thesis - this is not currently used anywhere in the template, cite it with \keywordnames if you want it
 %-------------------------------------------------   
-\university{\texorpdfstring{\href{http://www.upc.edu} % Your university's URL
+\university{\texorpdfstring{ % Your university's URL
                 {Universitat Politècnica de Catalunya (UPC) - BarcelonaTech}} % Your university's name - this is currently used in the title page
                 {Universitat Politècnica de Catalunya (UPC) - BarcelonaTech}}
 %-------------------------------------------------   
-\UNIVERSITY{\texorpdfstring{\href{http://www.upc.edu} % Your university's URL
+\UNIVERSITY{\texorpdfstring{ % Your university's URL
                 {UNIVERSITAT POLITÈCNICA DE CATALUNYA (UPC) - BARCELONATECH}} % Your university's name in capitals - this is currently used in the abstract page
                 {UNIVERSITAT POLITÈCNICA DE CATALUNYA (UPC) - BARCELONATECH}}
 %-------------------------------------------------                
@@ -224,11 +241,11 @@
                 {RESEARCH GROUP NAME (IN BLOCK CAPITALS)}} % Your research group's name in capitals - this is not currently used anywhere in the template, cite it with \GROUPNAME if you want it
                 {RESEARCH GROUP NAME (IN BLOCK CAPITALS)}}
 %-------------------------------------------------                
-\faculty{\texorpdfstring{\href{http://www.fib.upc.edu} % Your faculty's URL
+\faculty{\texorpdfstring{ % Your faculty's URL
                 {Facultat d'Informàtica de Barcelona (FIB)}} % Your faculty's name - this is currently used in the abstract page
                 {Facultat d'Informàtica de Barcelona (FIB)}}
 %-------------------------------------------------                
-\FACULTY{\texorpdfstring{\href{http://www.fib.upc.edu} % Your faculty's URL
+\FACULTY{\texorpdfstring{ % Your faculty's URL
                 {FACULTAT D’INFORMÀTICA DE BARCELONA (FIB)}} % Your faculty's name in capitals - this is not currently used anywhere in the template, cite it with \FACNAME if you want it
                 {FACULTAT D’INFORMÀTICA DE BARCELONA (FIB)}}
 %----------------------------------------------------------------------------------------    
@@ -298,19 +315,11 @@
   \null\vfil
   \begin{center}
     \setlength{\parskip}{0pt}
-    {\normalsize \UNIVNAME \par} % University name in capitals
-    \bigskip
     {\huge{\textit{Abstract}} \par}
     \bigskip
-    {\normalsize \facname \par} % Faculty name
-    {\normalsize \deptname \par} % Department name
-    \bigskip
-    {\normalsize \degreename\par} % Degree name
-    \bigskip
-    {\normalsize\bf \@title \par} % Thesis title
+    {\Large\bf \@title \par} % Thesis title
     \medskip
     {\normalsize by \authornames \par} % Author name
-    \bigskip
   \end{center}
 }
 %----------------------------------------------------------------------------------------

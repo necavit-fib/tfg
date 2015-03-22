@@ -1,0 +1,38 @@
+Having reviewed the main concepts to which this project is related, we can now outline
+its main purpose: \textbf{implement privacy preserving methods in a stream mining environment}.
+
+\subsection{MOA}
+
+\textbf{MOA}, initials for \textbf{M}assive \textbf{O}nline \textbf{A}nalysis, is an 
+open source framework for data stream mining~\citep{web:MOA}, originally 
+developed at the University of Waikato, New Zealand. It includes several machine learning 
+algorithms\footnote{Algorithms used to perform the actual data mining analysis (the 
+“machine learning \& visualization” step on \fref{fig:data-mining}) belong to the 
+field of machine learning. In MOA, clustering, classification, regression, outlier 
+detection and recommender systems are available.} to perform the analysis and tools 
+to evaluate the quality of the results. It also deals with a problem known as 
+\textit{concept drift}\footnote{It is said of statistical properties of a target variable 
+being analyed, when they change over time in unforeseen ways.}. It is related to the well
+known and commonly used Weka\footnote{Weka is a popular software package including 
+classical data mining algorithms, this is, not stream mining. It is also developed at 
+the University of Waikato.~\citep{web:Weka}} package, but it is built to perform at 
+a greater scale for more demanding problems.
+
+\subsubsection{MOA filters}
+
+One of the available features in MOA is the use of \textit{filters}, which can process
+streaming data before or after being fed to other systems or algorithms, such as learners
+or file writers. However, few filters are currently shipped within the latest MOA distribution,
+namely a filter to replace \textit{missing values}\footnote{In statistics, missing data, or missing values, 
+occur when no data value is stored for the variable in an observation. Missing data are a 
+common occurrence and can have a significant effect on the conclusions that can be drawn 
+from the data.} and a filter that adds noise to data.
+
+\subsubsection{MOA extensions}
+
+When working with MOA, the environment consists of the core library, but \textit{extensions}
+can be used to enhance the existing methods or to provide additional features, based on
+the core tools that MOA already provides. A series of extensions have been developed and can
+be found on MOA's website, at \url{http://moa.cms.waikato.ac.nz/moa-extensions}.
+
+\subsection{The project in a nutshell}
