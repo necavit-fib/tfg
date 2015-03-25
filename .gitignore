@@ -1,3 +1,9 @@
+## Older folders
+old-reports/
+
+## Generated PDFs
+/*.pdf
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
