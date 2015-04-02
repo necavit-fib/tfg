@@ -1,0 +1,52 @@
+\section{Statistical Disclosure Control}
+\label{Theory::SDC}
+
+As was already introduced in \sref{Introduction::Context::PPSM}, the purpose of Statistical Disclosure Control (SDC) is to prevent confidential information from being linked to specific individuals to whom this data belongs. We will review now concepts related to data disclosure and SDC methods and some theoretical foundations.
+
+\subsection{Disclosure \& types of variables}
+
+When assessing the disclosure risks of a given dataset (or data stream) we must have a look at the different kind of variables this data is composed of. We will stick to a classic~\citep{Templ:IntroSDC} categorization of such attributes into three groups, which need not be disjunctive, as follows:
+
+\begin{itemize}
+	\item \textbf{Identifiers:} variables that precisely identify individuals, e.g., social insurance numbers, person names, or addresses.
+	\item \textbf{Quasi-identifiers:} a set of variables that, when considered together, can be used to identify individual units. It might be possible to, for example, identify people by combining variables such as gender, age, region and occupation.
+	\item \textbf{Non-identifying variables:} these are neither \textit{identifiers} nor \textit{quasi-identifiers}.
+\end{itemize}
+
+Concerning \textit{disclosure}, it is also defined differently depending on the type of privacy breach that has occurred:
+
+\begin{itemize}
+	\item We talk about \textit{identity disclosure} when a specific individual record can be recognised in a dataset, i.e., when linkage with external available data is possible. Identity disclosure is performed using direct identifiers, rare combinations of values in quasi-identifier attributes and exact knowledge of variable values in external databases.
+	\item In the case of \textit{attribute disclosure}, the intruder is able to gather sensitive information about a specific unit from the released data, where it is directly available. For example, if no perturbation is applied to the original values of the \textit{wages} variable, one could learn how much a person is earning if its identity is disclosed too.
+	\item \textit{Inferential disclosure}, the most general case, occurs when an intruder is able to, with some uncertainty, predict or \textit{infer} confidential information about an individual from the statistical properties of data.
+\end{itemize}
+
+It is important to remark that a subset of critical variables might be exploited to disclose every information about a single unit in a dataset. Thus, we are bound to carefully select which variables of the dataset might be released to further users of the data, while trying to maximize its statistical utility. More concretely, it is extremely important to \textbf{not release identifiers} and to analyze quasi-identifiers closely, in order to avoid information leaks and privacy breaches.
+
+\subsection{Disclosure Risk vs Information Loss}
+\label{Theory::SDC::DiscRiskInfoLoss}
+
+Concerning the safety of the released data, \textbf{Disclosure Risk} (DR) is a common way to measure and assess the risk that 
+
+\subsection{Privacy guarantees}
+\label{Theory::SDC::Guarantees}
+
+\todo{Review the following descriptions}
+
+Many different methods have been developed to help prevent information disclosure when data mining datasets or results are released. These algorithms pursue the generation of results or data that have particular properties concerning privacy preservation. Some of the desirable properties of privacy-protected data are described in the following sections.
+
+\subsubsection{\textit{k}-Anonymity}
+
+First described in 2002, by Latanya Sweeney, a release of data is said to have the \textit{$k$-anonymity} property if the information for each person contained in the release cannot be distinguished from at least $k-1$ individuals whose information also appears in the release~\citep{Sweeney:kAnonymity}.
+
+\subsubsection{\textit{l}-Diversity}
+
+The evolution of the concept of $k$-anonymity is \textit{$l$-diversity} and adds further privacy preservation by adding intra-group diversity, so to avoid the flaws of the $k$-anonymity privacy model~\citep{Machanavajjhala:lDiversity}.
+
+\subsubsection{\textit{t}-Closeness}
+
+Further on, the \textit{$t$-closeness} property definition adds attribute-based privacy enforcement to the $l$-diversity model: to better preserve privacy, all values (all observations) from a particular attribute must not be too much different - instead, they should be close up to a certain threshold~\citep{Ninghui:tCloseness}. This is needed to preserve the privacy of those records that are more easily identifiable because their attribute values are more distinguishable.
+
+\subsubsection{Differential Privacy}
+
+\todo{What about this!?}

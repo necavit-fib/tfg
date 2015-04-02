@@ -1,0 +1,40 @@
+\section{SDC methods}
+\label{Theory::SDCMethods}
+
+\textbf{Privacy preserving algorithms:} the algorithms being used nowadays to achieve effective privacy preserving properties to datasets can be categorized into the following groups~\cite{Hundepool:StatisticalDisclosureControl}:
+\begin{itemize}
+	\item \textit{Non-perturbative data masking:} these kind of methods do not perform data values transformations. Instead, they are based in partial suppressions of records or reductions of detail of the datasets. Some examples\footnote{We will not cover every algorithm in detail, because some of them are not included in the scope of this project.} are:
+	\begin{itemize}
+		\item Sampling
+		\item Global recoding
+		\item Top and bottom coding
+		\item Local suppression
+	\end{itemize}
+
+	\item \textit{Perturbative data masking:} these methods do release the whole dataset, if required, but it is perturbed, this is, values are changed by adding them noise. This way, records are diffused and reidentifying individuals is harder. Some examples are:
+	\begin{itemize}
+		\item Noise masking
+		\item Micro-aggregation
+		\item Rank swapping
+		\item Data shuffling
+		\item Rounding
+		\item Re-sampling
+		\item PRAM
+		\item MASSC
+	\end{itemize}
+\end{itemize}
+
+\subsection{Noise Addition}
+\label{Theory::SDCMethods::NoiseAddition}
+
+\subsection{Multiplicative Noise}
+\label{Theory::SDCMethods::MultiplicativeNoise}
+
+\subsection{Microaggregation}
+\label{Theory::SDCMethods::Microaggregation}
+
+\subsection{Rank Swapping}
+\label{Theory::SDCMethods::RankSwapping}
+
+\subsection{Laplacian Mechanism}
+\label{Theory::SDCMethods::LaplacianMechanism}

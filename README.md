@@ -11,15 +11,15 @@ project management contents.
 
 #### Standalone files:
 
-* `Thesis.cls`: the LaTeX class for the thesis document
+* `thesis.cls`: the LaTeX class for the thesis document
 * `main.tex`: the main LaTeX document to be compiled
-* `Bibliography.bib`: a BibTeX formatted references database
+* `bibliography.bib`: a BibTeX formatted references database
 * `*.sty` files: they came along with the LaTeX template used for this report
 
 #### Directories:
 
-* **Appendices:** the appendices of the report
-* **Chapters:** the main content of the report is located here!
-* **Figures:** final, "rendered", figures to be included
-* **Missing Packages:** they came along with the LaTeX template
-* **Primitives:** unrendered version of the needed figures (plots, XML files...)
+* **appendices:** the appendices of the report
+* **chapters:** the main content of the report is located here!
+* **figures:** final, "rendered", figures to be included
+* **missing-packages:** they came along with the LaTeX template
+* **primitives:** unrendered version of the needed figures (plots, XML files...)
