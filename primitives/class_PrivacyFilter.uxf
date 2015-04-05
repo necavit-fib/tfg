@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="12.2">
+  <zoom_level>8</zoom_level>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>104</x>
+      <y>472</y>
+      <w>352</w>
+      <h>176</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;abstract&gt;&gt;
+*/PrivacyFilter/*
+--
++ disclosureRiskEstimatorOption : ClassOption
++ informationLossEstimatorOption : ClassOption
+- disclosureRiskEstimator : DisclosureRiskEstimator
+- informationLossEstimator : InformationLossEstimator
+--
++ getDisclosureRiskEstimator() : DisclosureRiskEstimator
++ getInformationLossEstimator() : InformationLossEstimator
++ getEvaluation() : Evaluation
++ getCurrentInformationLoss() : Double
++ getIncrementalInformationLoss() : Double
++ getCurrentDisclosureRisk() : Double</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>192</x>
+      <y>280</y>
+      <w>176</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;abstract&gt;&gt;
+*/AbstractOptionHandler/*
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>256</x>
+      <y>296</y>
+      <w>40</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>24;24;24;64</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>360</x>
+      <y>360</y>
+      <w>168</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>152;24;24;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>512</x>
+      <y>360</y>
+      <w>264</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+*StreamFilter*
+--
+--
++ setInputStream(stream : InstanceStream)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>176</x>
+      <y>360</y>
+      <w>208</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;abstract&gt;&gt;
+*/AbstractStreamFilter/*
+--
+# inputStream : InstanceStream
+--
+/+ restartImpl()/</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>512</x>
+      <y>472</y>
+      <w>272</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+*AnonymizationFilter*
+--
+--
++ nextAnonimizedInstancePair() : InstancePair
++ prepareFilterForUse()
++ restartFilter()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>432</x>
+      <y>496</y>
+      <w>96</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>80;24;24;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>256</x>
+      <y>408</y>
+      <w>40</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>24;24;24;64</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>512</x>
+      <y>184</y>
+      <w>264</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+*InstanceStream*
+--
+--
++ getHeader() : InstancesHeader
++ estimatedRemainingInstances() : Integer
++ hasMoreInstances() : Boolean
++ nextInstance() : Instance
++ isRestartable() : Boolean
++ restart()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>624</x>
+      <y>288</y>
+      <w>40</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>24;24;24;72</additional_attributes>
+  </element>
+</diagram>

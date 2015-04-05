@@ -1,7 +1,34 @@
 \section{Statistical Disclosure Control}
 \label{Theory::SDC}
 
-As was already introduced in \sref{Introduction::Context::PPSM}, the purpose of Statistical Disclosure Control (SDC) is to prevent confidential information from being linked to specific individuals to whom this data belongs. We will review now concepts related to data disclosure and SDC methods and some theoretical foundations.
+As was already introduced in \sref{Introduction::Context::PPSM}, the purpose of Statistical Disclosure Control (SDC) is to prevent confidential information from being linked to specific individuals to whom this data belongs. We will review now some concepts related to data disclosure and SDC methods and some theoretical foundations.
+
+\subsection{Privacy preserving algorithms} 
+\label{Theory::SDC::Algorithms}
+
+As a quick and superficial review, the algorithms\footnote{We will not cover every algorithm in detail, because some of them are not included in the scope of this project.} being used nowadays to achieve effective privacy preserving in datasets can be categorized into the following groups~\cite{Hundepool:StatisticalDisclosureControl}:
+
+\begin{itemize}
+	\item \textit{Non-perturbative data masking:} these kind of methods do not perform data values transformations. Instead, they are based in partial suppressions of records or reductions of detail of the datasets. Some examples are:
+	\begin{itemize}
+		\item Sampling
+		\item Global recoding
+		\item Top and bottom coding
+		\item Local suppression
+	\end{itemize}
+
+	\item \textit{Perturbative data masking:} these methods do release the whole dataset, if required, but it is perturbed, this is, values are changed by adding them noise. This way, records are diffused and reidentifying individuals is harder. Some examples are:
+	\begin{itemize}
+		\item Noise masking
+		\item Micro-aggregation
+		\item Rank swapping
+		\item Data shuffling
+		\item Rounding
+		\item Re-sampling
+		\item PRAM
+		\item MASSC
+	\end{itemize}
+\end{itemize}
 
 \subsection{Disclosure \& types of variables}
 
@@ -23,10 +50,37 @@ Concerning \textit{disclosure}, it is also defined differently depending on the 
 
 It is important to remark that a subset of critical variables might be exploited to disclose every information about a single unit in a dataset. Thus, we are bound to carefully select which variables of the dataset might be released to further users of the data, while trying to maximize its statistical utility. More concretely, it is extremely important to \textbf{not release identifiers} and to analyze quasi-identifiers closely, in order to avoid information leaks and privacy breaches.
 
-\subsection{Disclosure Risk vs Information Loss}
-\label{Theory::SDC::DiscRiskInfoLoss}
+\subsection{Disclosure Risk}
+\label{Theory::SDC::DiscRisk}
 
-Concerning the safety of the released data, \textbf{Disclosure Risk} (DR) is a common way to measure and assess the risk that 
+Concerning the safety of the released data, \textbf{Disclosure Risk} (DR) is a common way to measure and assess the risk of re-identification of particular individuals. Re-identification happens when some sensitive and confidential data that have been released are subsequently linked to a particular individual, which results in a confidentiality breach. There are a number of different approaches in how to assess disclosure risk and whether to measure it \textit{per record} or globally, taking into account the whole dataset.
+
+As noted in \citep{Domingo:DiscRiskAssessment}, there is not much literature on disclosure risk that can be used for a broad class of perturbative methods; disclosure risk measures tend instead to be method-specific. Therefore, empirical methods are most used to assess disclosure risk for these kind of methods.
+
+\subsubsection{Record linkage}
+
+Most notably, the mechanisms used to measure disclosure risk follow a \textit{record linkage} approach. This is, after an SDC method has been used to anonymize data, a record linkage procedure is applied to the original and released (masked, anonymized) datasets. This \textit{linkage} attempts to identify, for each record in the masked dataset, which is the corresponding record in the original dataset. If such correspondance is verified, the record is labeled as \textit{correctly linked}. A generic measure for disclosure risk is the percentage of correctly linked records from the total amount in the dataset.
+
+\begin{itemize}
+	\item \textbf{Distance-based record linkage:} provided that a \textit{distance} measure can be defined between the original and the masked datasets, linkage is performed as follows: for each record in the anonymized dataset, a distance to each record in the original dataset is calculated. The nearest record, in terms of this distance measurement, is assumed to be the corresponding record, thus establishing a \textit{link} between them. This linkage is then verified to assess how many of these guesses are true re-identifications.
+	
+	\item \textbf{Probabilistic record linkage:} in this case, the matching algoritm works a little different. For each possible pair of original and masked records, a \textit{coincidence vector} is defined. This vector holds, for each attribute, whether or not the values of the considered records are equal. An index is computed afterwards over these vectors and, using such index, the records pairs are classified as \textit{linked} or \textit{not linked}. Again, this linkage is verified to assess the number of true re-identifications.
+\end{itemize}
+
+\subsection{Information Loss}
+\label{Theory::SDC::InfoLoss}
+
+Another key measurement concerning data protection is \textbf{Information Loss} (IL) or \textit{data utility}, which could be defined as the amount of useful statistical information that is lost along the data masking process. A good SDC method should try to minimize IL, in order to provide optimally useful data to the legitimate users of such data, while also keeping a low disclosure risk. It is important to note that these two properties are inversely proportional: the lower disclosure risk is, the higher information loss will occur. This trade off between these two parameters is often a difficult and challenging task and should be taken into very careful consideration, depending on the release policies that apply, the kind of data being released and the sensitivity of the information contained in such data. This evaluation should be performed not only from a purely quantitave and numerical point of view, but from an ethical and privacy concerned one too.
+
+As well as with disclosure risk, a number of methods and approaches are taken to assess information loss when releasing privacy protected datasets, ranging from unbounded~\citep{Domingo:SDCMethodsInfoLoss} to probabilistic (bound to the $[0,1]$ interval) measurements~\citep{Mateo:ProbInfLossMeasures}.
+
+\subsubsection*{Unbounded Information Loss}
+
+An example framework to assess IL was given in \citep{Domingo:SDCMethodsInfoLoss}, which evaluates some key statistical properties of the released data. More concretely, it computes three \textit{discrepancy} measurements for a series of pairs of matrices (correlation, covariance, etc. of the original and masked datasets), namely the \textit{mean square error}, the \textit{mean absolute error} and the \textit{mean variation}.
+
+\subsubsection*{Probabilistic Information Loss}
+
+The aim of measuring IL in a probabilistic manner is to bound this measurement to the $[0,1]$ range, thus allowing its comparison with DR, which is also generally expressed within this range. This way, a \textit{score} could be calculated from both normalized measures for an SDC method, easing parameters selection to data protectors, for example.
 
 \subsection{Privacy guarantees}
 \label{Theory::SDC::Guarantees}
