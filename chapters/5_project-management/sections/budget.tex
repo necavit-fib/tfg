@@ -1,5 +1,213 @@
 \section{Budget}
 \label{Management:Budget}
 
-\subsection{Resources}
+The initial budget and resources analysis, performed during the Project Management module, corresponds with~\sref{Management:Budget:Resources},~\sref{Management:Budget:Estimation} and~\sref{Management:Budget:Control}. Due to schedule deviations during the project, a final budget estimation is given in~\sref{Management:Budget:Final}.
+
+The project’s budget is entirely based on an estimation of human, hardware and software resources costs. No real income is perceived, besides the salary of the project’s supervisor, who is a tenure-track lecturer at the Barcelona School of Informatics, and an associate researcher at the Barcelona Supercomputing Center. No third parties are involved in the project - no companies or organizations are providing any funds. Moreover, even though the work is to be integrated into the MOA framework, it is indeed an open-source project, to which we will be contributing, meaning contributions are expected from any kind of source, be it funded or not.
+
+All other associated costs are \textit{externalized}, either by people involved in the project or by the university, where the development of the project will be held.
+
+\subsection{Resources \& budget estimation}
 \label{Management:Budget:Resources}
+
+Resources consumed in this project only fall in one of the following categories: \textit{human resources}, \textit{hardware}, \textit{software} and \textit{other expenses}. For a detailed description of what will be needed in the project, please see the following subsections. It is important to keep in mind that \textit{all} resources will be consumed equally througout the entire project duration.
+
+\subsubsection{Human resources}
+
+Human resources are summarized in~\tref{table:human-resources}.
+
+All expenses included here are related to people’s salaries. Only one developer will be working on this project, but a number of hours involving supervision tasks is also imputed to the project’s supervisor, so its corresponding cost is added too. Taxes are included in all of the following items. The price is also an estimation: on the developer’s side, it is based on a salaries comparison webpage (\textit{Glassdoor}~\citep{web:Glassdoor})\footnote{As of date 12th October, 2014, the average salary for a software engineer in Barcelona is 32000€ per year (including taxes). Considering 12 monthly instalments and an average of 160 hours per month, this yields a total of 16.66€ per hour.}; on the supervisor side, the price is based on his own estimation.
+
+\begin{itemize}
+	\item \textbf{Developer:} an average of 20 hours a week are estimated, spanning for about 21 weeks, summing up a total of 420 hours.
+	\item \textbf{Supervisor:}
+	\begin{itemize}
+		\item \textbf{Project’s take off:} 8 hours, between meetings and initial planning.
+		\item \textbf{Sprints:} 8 hours each sprint, taking into account both face to face meetings and other supervising tasks. There are 7 sprints scheduled so far, making a total of 56 hours.
+		\item \textbf{Documentation:} during the project’s final stage, an estimation of 20 hours is taken from the corresponding supervision of the project’s report.
+	\end{itemize}
+\end{itemize}
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{lllr}
+		\hline
+		\textbf{Role} & \textbf{Price (per hour)} & \textbf{Working  hours} & \multicolumn{1}{l}{\textbf{Total}} \\ \hline
+		Supervisor & \multicolumn{1}{r}{35€} & \multicolumn{1}{r}{84} & 2940€ \\
+		Developer & \multicolumn{1}{r}{16.66€} & \multicolumn{1}{r}{420} & 6997.2€ \\ \hline
+		&  & \multicolumn{1}{r}{\textbf{Total}} & \textbf{9937.2€}
+	\end{tabular}
+	\caption{Human resources associated costs. All taxes are included in the Price per hour column.}
+	\label{table:human-resources}
+\end{table}
+
+\subsubsection{Hardware resources}
+
+Hardware resources are summarized in~\tref{table:hardware-resources}.
+
+All hardware needed resources are shown in the corresponding table. Their cost is calculated by estimating its amortization, spanned over 5 years (it is a personal laptop). To calculate its amortized cost per hour, we will take into account that this equipment is used throughout the course too, and estimating that 2500 hours of work are carried each year.
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{l r r r r r}
+		\hline
+		\textbf{Product} & \multicolumn{1}{l}{\textbf{Price}} & \multicolumn{1}{l}{\textbf{Units}} & \multicolumn{1}{p{3cm}}{\textbf{Amortized price per hour}} & \multicolumn{1}{l}{\textbf{Work time (hours)}} & \multicolumn{1}{l}{\textbf{Total}} \\ \hline
+		Asus k53sv & 650€ & 1 & 0.052€ & 420 & 21.84€ \\ \hline
+		&  &  &  & \textbf{Total} & \textbf{21.84€}
+	\end{tabular}
+	\caption{Hardware amortization costs. All taxes included.}
+	\label{table:hardware-resources}
+\end{table}
+
+\subsubsection{Software resources}
+
+All software needed to undertake this project is free and, most of it, is open sourced. Despite this, we will include a list of it here, to show what will be used at a finer grain.
+
+\begin{itemize}
+	\item \textbf{Ubuntu 12.04}: operating system. Available at: \url{http://www.ubuntu.com/download}.
+	\item \textbf{Trello}: online task management tool. Available at: \url{https://trello.com/}.
+	\item \textbf{Google Drive}: online, collaborative office software suit, used to create burndown charts (spreadsheets). Available at: \url{https://drive.google.com}.
+	\item \textbf{Java SDK}: Java language Software Development Kit. Available at: \url{http://openjdk.java.net}.
+	\item \textbf{Eclipse IDE}: integrated development environment package. Available at: \url{https://www.eclipse.org/home/index.php}.
+	\item \textbf{Git}: source version control system. Available at: \url{http://git-scm.com/}. Remote code repositories will be hosted at GitHub (\url{https://github.com}) for free.
+	\item \textbf{MOA}: Massive Online Analysis, a stream mining framework. Available at: \url{http://moa.cms.waikato.ac.nz}.
+	\item \textbf{\LaTeX}: document preparation system. Available at: \url{http://www.latex-project.org}.
+\end{itemize}
+
+\subsubsection{Other expenses}
+
+All expenses not covered in the previous sections are detailed in~\tref{table:other-resources}.
+
+\textbf{Please note} that the cost of each item of this section is an estimation. Moreover, even though they are displayed, since no budget is really available, they will be \textit{absorbed} by the university, where most of the work will be carried out.
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{lrrr}
+		\hline
+		\textbf{Product} & \multicolumn{1}{l}{\textbf{Price per month}} & \multicolumn{1}{l}{\textbf{Months}} & \multicolumn{1}{l}{\textbf{Total}} \\ \hline
+		Energy & 35€ & 4 & 140€ \\
+		Water & 25€ & 4 & 100€ \\
+		Heat \& air & 30€ & 4 & 120€ \\
+		Internet connection & 40€ & 4 & 160€ \\ \hline
+		& \multicolumn{1}{l}{} & \textbf{Total} & \textbf{520€}
+	\end{tabular}
+	\caption{Uncategorized resources estimated costs. All taxes are included.}
+	\label{table:other-resources}
+\end{table}
+
+\subsection{Total budget estimation}
+\label{Management:Budget:Estimation}
+
+The sum of the subtotals of the previous sections is shown in~\tref{table:total-resources}. Please note that, since taxes are already included in each item appropriately, there is no need to add them here.
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{lr}
+		\hline
+		\textbf{Concept} & \multicolumn{1}{l}{\textbf{Total}} \\ \hline
+		Human resources & 9937.2€ \\
+		Hardware & 21.84€ \\
+		Software & 0€ \\
+		Other expenses & 520€ \\ \hline
+		\multicolumn{1}{r}{\textbf{Total}} & \multicolumn{1}{l}{\textbf{10479.04€}}
+	\end{tabular}
+	\caption{Total budget: summation of budget estimations.}
+	\label{table:total-resources}
+\end{table}
+
+All costs are just estimations and are not covered in any way, with the exception of the supervisor’s salary. This means that, in fact, there is no possible way this project is feasible. However, given that the developer has no salary at all and that all other extra costs are assumed by the university or the developer, the project can be developed normally.
+
+\subsection{Budget control mechanisms}
+\label{Management:Budget:Control}
+
+Any budget deviations related to material equipment or software purchases will be monitored in the sprint planning meetings at the beginning of each of those phases during the project. These possible extra costs will be assumed by the developer, since no other source of funds is available.
+
+Another source of budget deviations can be found on the project’s duration. If the schedule is not fulfilled and the project is delayed, extra cost in terms of human resources, hardware amortizations and other expenses would have to be added. They still would be treated as they are in the present analysis, meaning no significant change would occur.
+
+\subsection{Final budget estimation}
+\label{Management:Budget:Final}
+
+Due to the deviation in the project's schedule, that was already analyzed in~\sref{Management:Schedule:Final}, an increment in the human resources, external expenses and hardware amortization budget contributions has arised. It is important to note that, given that no proprietary software package has been used, no additional costs might be derived from the lenghtening of the project duration. We will now cover this budget deviation and provide a final estimation of the project cost, which is summarized in~\tref{table:final-total-resources}.
+
+\subsubsection*{Human resources: deviation}
+
+Following the analysis from~\ref{Management:Budget:Resources}, we just have to add the corresponding increment of working hours for both the developer and supervisor.
+
+\begin{itemize}
+	\item \textbf{Developer:} an average of 20 hours a week are estimated, spanning for about 32 weeks, summing up a total of 640 hours. However, given that no work was carried during Christmas holidays, the total number of hours should be lowered to, at most, \textbf{600 hours}.
+	\item \textbf{Supervisor:}
+	\begin{itemize}
+		\item \textbf{Project’s take off:} 8 hours, between meetings and initial planning.
+		\item \textbf{Sprints:} 8 hours each sprint, taking into account both face to face meetings and other supervising tasks. With 10 sprints of final work, this yields a total of \textbf{80 hours}.
+		\item \textbf{Documentation:} during the project’s final stage, an estimation of \textbf{20 hours} is taken from the corresponding supervision of the project’s report.
+	\end{itemize}
+\end{itemize}
+
+Considering the previous estimation and keeping the same prices per hour of the initial estimation, the following total human resources cost is calculated (see~\tref{table:human-resources-final}).
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{lllr}
+		\hline
+		\textbf{Role} & \textbf{Price (per hour)} & \textbf{Working  hours} & \multicolumn{1}{l}{\textbf{Total}} \\ \hline
+		Supervisor & \multicolumn{1}{r}{35€} & \multicolumn{1}{r}{108} & 3780€ \\
+		Developer & \multicolumn{1}{r}{16.66€} & \multicolumn{1}{r}{600} & 9996€ \\ \hline
+		&  & \multicolumn{1}{r}{\textbf{Total}} & \textbf{13776€}
+	\end{tabular}
+	\caption{Human resources associated costs (final estimation).}
+	\label{table:human-resources-final}
+\end{table}
+
+\subsubsection*{Hardware resources: deviation}
+
+The only change in the hardware related costs is the number of working hours devoted to the project, which have a direct impact on the amortization of the equipment.
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{l r r r r r}
+		\hline
+		\textbf{Product} & \multicolumn{1}{l}{\textbf{Price}} & \multicolumn{1}{l}{\textbf{Units}} & \multicolumn{1}{p{3cm}}{\textbf{Amortized price per hour}} & \multicolumn{1}{l}{\textbf{Work time (hours)}} & \multicolumn{1}{l}{\textbf{Total}} \\ \hline
+		Asus k53sv & 650€ & 1 & 0.052€ & 600 & 31.2€ \\ \hline
+		&  &  &  & \textbf{Total} & \textbf{31.2€}
+	\end{tabular}
+	\caption{Hardware amortization costs (final estimation).}
+	\label{table:hardware-resources-final}
+\end{table}
+
+\subsubsection*{Other expenses: deviation}
+
+Given that the amount of months dedicated to the project's development has increased, the estimated cost for the expenses related to the developer's accomodation has to reflect the changes as well.
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{lrrr}
+		\hline
+		\textbf{Product} & \multicolumn{1}{l}{\textbf{Price per month}} & \multicolumn{1}{l}{\textbf{Months}} & \multicolumn{1}{l}{\textbf{Total}} \\ \hline
+		Energy & 35€ & 7 & 245€ \\
+		Water & 25€ & 7 & 175€ \\
+		Heat \& air & 30€ & 7 & 210€ \\
+		Internet connection & 40€ & 7 & 280€ \\ \hline
+		& \multicolumn{1}{l}{} & \textbf{Total} & \textbf{910€}
+	\end{tabular}
+	\caption{Uncategorized resources estimated costs. All taxes are included.}
+	\label{table:other-resources-final}
+\end{table}
+
+\subsubsection*{Final estimation}
+
+The following is the final estimation of the project's budget, taking into account all deviations from the particular budget contributions.
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{lr}
+		\hline
+		\textbf{Concept} & \multicolumn{1}{l}{\textbf{Total}} \\ \hline
+		Human resources & 13776€ \\
+		Hardware & 31.2€ \\
+		Software & 0€ \\
+		Other expenses & 910€ \\ \hline
+		\multicolumn{1}{r}{\textbf{Total}} & \multicolumn{1}{l}{\textbf{14717.2€}}
+	\end{tabular}
+	\caption{Total budget final estimation.}
+	\label{table:final-total-resources}
+\end{table}
