@@ -1,0 +1,81 @@
+\section{Goals \& scope}
+\label{Management:Scope}
+
+One of the first things to do when beginning any project is delimiting its \textbf{scope}, this is, deciding \textit{what} will be done and \textit{how}, in terms of resources and methodology.
+
+We already stated in \sref{Introduction::moa-ppsm} what the main \textit{goal} of this project is:
+
+\begin{quote}
+	\begin{description}
+		\item[Main goal:] \hfill \\
+		Implement privacy preserving filters for the Massive Online Analysis (MOA) stream mining framework.
+	\end{description}
+\end{quote}
+
+\subsection{Requirements analysis}
+\label{Management:Scope:Requirements}
+
+For the sake of completeness and verbosity, a more detailed list of the project's \textit{requirements} is given in the next couple of sections, categorized into \textit{functional}\footnote{Functional requirements explain what has to be done by identifying the necessary task, action or activity that must be accomplished.} and \textit{non-functional}\footnote{Non-functional requirements are requirements that specify criteria that can be used to judge the operation of a system, rather than specific behaviors.} ones. Together, they comprise the formal scope of the project.
+
+\subsubsection*{Functional requirements}
+
+\begin{enumerate}[leftmargin=1.5cm, label=\textbf{R\arabic*}]
+	\item
+	Implement privacy preserving stream mining \textit{filters}\footnote{Within the MOA context, \textit{filters} are procedures applied to data prior to their analysis using machine learning algorithms.} for the MOA stream mining framework. The \textit{suggested} algorithms to be implemented correspond with the following requirements:
+	\begin{enumerate}[label*=\textbf{-\arabic*}]
+		\item Noise addition~\citep[p.~54]{Hundepool:StatisticalDisclosureControl}
+		\item Multiplicative noise~\citep[p.~57]{Hundepool:StatisticalDisclosureControl}
+		\item Microaggregation~\citep[p.~60]{Hundepool:StatisticalDisclosureControl}
+		\item Rank swapping~\citep[p.~73]{Hundepool:StatisticalDisclosureControl}
+		\item Differential privacy~\citep{Dwork:DifferentialPrivacy}
+	\end{enumerate}
+	
+	\item
+	Evaluate technological alternatives prior to the implementation of the privacy filters.
+	
+	\item
+	Benchmark the performance of the filters in terms of \textit{disclosure risk} and \textit{information loss}.
+\end{enumerate}
+
+\subsubsection*{Non-functional requirements}
+
+\begin{enumerate}[leftmargin=1.5cm, label=\textbf{NFR\arabic*}]
+	\item
+	\textit{Correctness:} privacy protection is at stake in this project, so algorithms must be implemented correctly, from the theoretical point of view, in order to not ease information disclosure when they are used.
+	
+	\item
+	\textit{Efficiency:} given that no data mining process can scale well if its algorithms are slow, effort will be put in making them the most efficient we can.
+	
+	\item
+	\textit{Test coverage:} measures and tests will be performed to assess the quality of the developed software, as well as its scalability and performance, which is paramount in this project’s context.
+	
+	\item
+	\textit{Documentation:} MOA is an \textit{open source} data mining framework, which means that its community can assess how is it built and how to improve it. One of the benefits of the open source development model is that software can be safer, more robust and efficient, by receiving contributions from different developers. If people are to continue improving the work done, it has to be well documented.
+\end{enumerate}
+
+\subsection{Scope deviations}
+\label{Management:Scope:Deviations}
+
+There have been no major changes in the scope of the project along its development. Both the functional and non-functional requirements sets remain the same as the ones defined in the final report of the Project Management course (and also listed above).
+
+However, concerning its completion, we have to admit that not all requirements have been achieved. We provide now an enumeration of the functional requirements and their final status:
+
+\begin{enumerate}[leftmargin=1.5cm, label=\textbf{R\arabic*}]
+	\item
+	\textsc{[Mostly completed]} Implement privacy preserving stream mining \textit{filters} for the MOA stream mining framework.
+	\begin{enumerate}[label*=\textbf{-\arabic*}]
+		\item \textsc{[Completed]} Noise addition~\citep[p.~54]{Hundepool:StatisticalDisclosureControl}
+		\item \textsc{[Not completed]} Multiplicative noise~\citep[p.~57]{Hundepool:StatisticalDisclosureControl}
+		\item \textsc{[Completed]} Microaggregation~\citep[p.~60]{Hundepool:StatisticalDisclosureControl}
+		\item \textsc{[Completed]} Rank swapping~\citep[p.~73]{Hundepool:StatisticalDisclosureControl}
+		\item \textsc{[Completed]} Differential privacy~\citep{Dwork:DifferentialPrivacy}
+	\end{enumerate}
+	
+	\item
+	\textsc{[Completed]} Evaluate technological alternatives prior to the implementation of the privacy filters.
+	
+	\item
+	\textsc{[Completed]} Benchmark the performance of the filters in terms of \textit{disclosure risk} and \textit{information loss}.
+\end{enumerate}
+
+Even though the \textbf{R1-2} requirement could not be finished, and further work would be possible, as will be discussed in the Conclusions section, the Agile approach for this project has enabled us to avoid a sense of failure at the end of its development.
