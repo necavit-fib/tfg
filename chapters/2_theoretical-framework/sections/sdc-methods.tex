@@ -1,17 +1,70 @@
 \section{SDC methods}
-\label{Theory::SDCMethods}
+\label{Theory:SDCMethods}
+
+We will describe now some of the most common methods and mechanisms used in SDC applications to anonymize data or provide privacy preserving data releases.
+
+\subsection*{Notation}
+
+We assume the following notation for the subsequent method descriptions:
+
+\begin{itemize}
+	\item
+	The original dataset is the matrix $X$, with $n$ rows (samples) and $m$ attributes or variables. Therefore, the $x_{ij}$ element of the dataset denotes the value that the $j$-th attribute takes in the $i$-th row for any $1 \leq i \leq n$ and $1 \leq j \leq m$.
+	
+	\item
+	The anonymized (protected) dataset is named $X'$.
+\end{itemize}
 
 \subsection{Noise Addition}
-\label{Theory::SDCMethods::NoiseAddition}
+\label{Theory:SDCMethods:NoiseAddition}
 
-\subsection{Multiplicative Noise}
-\label{Theory::SDCMethods::MultiplicativeNoise}
+Noise addition or \textit{additive noise masking} is a fairly simple method that is based on the addition of gaussian noise to data, thus randomly distorting its values and difficulting re-identification of individuals. The main additive noise algorithms in the literature are~\citep[p. 54]{Hundepool:StatisticalDisclosureControl}:
+
+\begin{itemize}
+	\item
+	Uncorrelated noise addition.
+	\item
+	Correlated noise addition.
+	\item
+	Noise addition and linear transformation.
+	\item
+	Noise addition and non-linear transformation.
+\end{itemize}
+
+We will only cover the first couple of methods, because of the inherent difficulty of the latter, both in its theoretical basis and its practical implementation, which renders them not suitable for the needs of this project.
+
+\subsubsection{Uncorrelated noise addition}
+
+Masking by additive noise the $j$-th variable of an original dataset $X$ yields an anonymized dataset $X'$ such that
+
+\begin{equation}
+x_{ij}' = x_{ij} + \epsilon\ \ \ \text{for}\ 1 \leq i \leq n
+\end{equation}
+
+where $\epsilon$ is drawn from a random variable $\varepsilon_j \sim N(0,\sigma_{\varepsilon_j}^2)$. The general assumption is that the variances of each $\varepsilon_j$ are proportional to those of the original variables, this is, if $\textrm{Var}(X_j) = \sigma_j^2$ is the variance of the $j$-th attibute of the dataset $X$, then $\sigma_{\varepsilon_j}^2 := \alpha\sigma_j^2$.
+
+While this method preserves means and covariances, it is, unfortunately, not able to preserve variances nor correlation coefficients.
+
+\subsubsection{Correlated noise addition}
+
+This method is aimed to also preserve correlation coefficients, with respect to \textit{uncorrelated} noise addition. The main difference with the previous mechanism is that the covariance matrix of the errors is now proportional to the covariance matrix of the data: $\varepsilon \sim N(0,\Sigma_\varepsilon)$, where $\Sigma_\varepsilon = \alpha\Sigma$.
+
+Masking by correlated noise addition provides data with higher analytical utility than masking using uncorrelated noise, as long as $\alpha$ is revealed to the data user. However, the low level of protection yielded by this method and the previous one render them as not very useful for truly important SDC applications.
 
 \subsection{Microaggregation}
-\label{Theory::SDCMethods::Microaggregation}
+\label{Theory:SDCMethods:Microaggregation}
+
+%TODO
+\todo{microaggregation}
 
 \subsection{Rank Swapping}
-\label{Theory::SDCMethods::RankSwapping}
+\label{Theory:SDCMethods:RankSwapping}
+
+%TODO
+\todo{rank swapping}
 
 \subsection{Laplacian Mechanism}
-\label{Theory::SDCMethods::LaplacianMechanism}
+\label{Theory:SDCMethods:LaplacianMechanism}
+
+%TODO
+\todo{Laplacian}

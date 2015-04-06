@@ -1,10 +1,10 @@
 \section{Statistical Disclosure Control}
-\label{Theory::SDC}
+\label{Theory:SDC}
 
 As was already introduced in \sref{Introduction::Context::PPSM}, the purpose of Statistical Disclosure Control (SDC) is to prevent confidential information from being linked to specific individuals to whom this data belongs. We will review now some concepts related to data disclosure and SDC methods and some theoretical foundations.
 
 \subsection{Privacy preserving algorithms} 
-\label{Theory::SDC::Algorithms}
+\label{Theory:SDC:Algorithms}
 
 As a quick and superficial review, the algorithms\footnote{We will not cover every algorithm in detail, because some of them are not included in the scope of this project.} being used nowadays to achieve effective privacy preserving in datasets can be categorized into the following groups~\cite{Hundepool:StatisticalDisclosureControl}:
 
@@ -31,6 +31,7 @@ As a quick and superficial review, the algorithms\footnote{We will not cover eve
 \end{itemize}
 
 \subsection{Disclosure \& types of variables}
+\label{Theory:SDC:DisclosureTypes}
 
 When assessing the disclosure risks of a given dataset (or data stream) we must have a look at the different kind of variables this data is composed of. We will stick to a classic~\citep{Templ:IntroSDC} categorization of such attributes into three groups, which need not be disjunctive, as follows:
 
@@ -51,7 +52,7 @@ Concerning \textit{disclosure}, it is also defined differently depending on the 
 It is important to remark that a subset of critical variables might be exploited to disclose every information about a single unit in a dataset. Thus, we are bound to carefully select which variables of the dataset might be released to further users of the data, while trying to maximize its statistical utility. More concretely, it is extremely important to \textbf{not release identifiers} and to analyze quasi-identifiers closely, in order to avoid information leaks and privacy breaches.
 
 \subsection{Disclosure Risk}
-\label{Theory::SDC::DiscRisk}
+\label{Theory:SDC:DiscRisk}
 
 Concerning the safety of the released data, \textbf{Disclosure Risk} (DR) is a common way to measure and assess the risk of re-identification of particular individuals. Re-identification happens when some sensitive and confidential data that have been released are subsequently linked to a particular individual, which results in a confidentiality breach. There are a number of different approaches in how to assess disclosure risk and whether to measure it \textit{per record} or globally, taking into account the whole dataset.
 
@@ -68,7 +69,7 @@ Most notably, the mechanisms used to measure disclosure risk follow a \textit{re
 \end{itemize}
 
 \subsection{Information Loss}
-\label{Theory::SDC::InfoLoss}
+\label{Theory:SDC:InfoLoss}
 
 Another key measurement concerning data protection is \textbf{Information Loss} (IL) or \textit{data utility}, which could be defined as the amount of useful statistical information that is lost along the data masking process. A good SDC method should try to minimize IL, in order to provide optimally useful data to the legitimate users of such data, while also keeping a low disclosure risk. It is important to note that these two properties are inversely proportional: the lower disclosure risk is, the higher information loss will occur. This trade off between these two parameters is often a difficult and challenging task and should be taken into very careful consideration, depending on the release policies that apply, the kind of data being released and the sensitivity of the information contained in such data. This evaluation should be performed not only from a purely quantitave and numerical point of view, but from an ethical and privacy concerned one too.
 
@@ -83,15 +84,19 @@ An example framework to assess IL was given in \citep{Domingo:SDCMethodsInfoLoss
 The aim of measuring IL in a probabilistic manner is to bound this measurement to the $[0,1]$ range, thus allowing its comparison with DR, which is also generally expressed within this range. This way, a \textit{score} could be calculated from both normalized measures for an SDC method, easing parameters selection to data protectors, for example.
 
 \subsection{Privacy guarantees}
-\label{Theory::SDC::Guarantees}
+\label{Theory:SDC:Guarantees}
 
-\todo{Review the following descriptions}
-
-Many different methods have been developed to help prevent information disclosure when data mining datasets or results are released. These algorithms pursue the generation of results or data that have particular properties concerning privacy preservation. Some of the desirable properties of privacy-protected data are described in the following sections.
+Many different methods have been developed to help prevent information disclosure when data mining datasets or results are released. These algorithms pursue the generation of results or data that have particular properties concerning privacy preservation. Some of the desirable properties of privacy-protected data are described in the following sections, but no formal definition is provided for some of them (please refer to the original papers and publications to understand them better).
 
 \subsubsection{\textit{k}-Anonymity}
 
-First described in 2002, by Latanya Sweeney, a release of data is said to have the \textit{$k$-anonymity} property if the information for each person contained in the release cannot be distinguished from at least $k-1$ individuals whose information also appears in the release~\citep{Sweeney:kAnonymity}.
+First described in 2002, by Latanya Sweeney, a release of data is said to have the \textit{$k$-anonymity} property if the information for each person contained in the release cannot be distinguished from at least $k-1$ individuals whose information also appears in the release~\citep{Sweeney:kAnonymity}. A more formal definition uses the previously reviewed concept of \textit{quasi-identifiers} (see~\sref{Theory:SDC:DisclosureTypes}).
+
+\begin{definition}~($k$-Anonymity)
+A dataset is said to satisfy $k$-anonymity for an integer $k > 1$ if, for each combination of values of quasi-identifiers, at least $k$ records exist in the dataset sharing that combination.~\citep{Domingo:EnhancingDiffPrivMicroaggregation}
+\end{definition}
+
+An intruder trying to use a $k$-anonymous dataset to do, for example, record linkage against an external source of information will find that at least $k$ records in the dataset match any value of the quasi-identifiers that he or she is trying to use to perform the linkage. Thus, re-identification is limited to \textit{groups}, this is, no individual records can be linked, just groups of size at least $k$.
 
 \subsubsection{\textit{l}-Diversity}
 
@@ -103,4 +108,13 @@ Further on, the \textit{$t$-closeness} property definition adds attribute-based 
 
 \subsubsection{Differential Privacy}
 
-\todo{What about this!?}
+Described in~\citet{Dwork:DifferentialPrivacy}, \textit{differential privacy} is a condition \textit{on the release mechanism} (not the dataset) that guarantees a strong privacy preservation level for some particular data uses contexts. Differential privacy is introduced in an \textit{interactive} setting, i.e., in a query-response data retrieval environment, and offers probabilistic guarantees that the contribution of any single individual to thenquery response is limited.
+
+\begin{definition}~($\varepsilon$-Differential privacy)
+A randomized mechanism\footnote{By \textit{mechanism}, we refer to any kind of function or system used to query for data.} $\mathcal{M}$ gives $\varepsilon$-differential privacy if, for all datasets $X_1$, $X_2$ such that one can be obtained from the other by modifying a \textit{single} record, and all $S \subset Range(\mathcal{M})$, it holds
+\begin{equation}
+P(\mathcal{M}(X_1) \in S) \leq \mathrm{exp}(\varepsilon) \times P(\mathcal{M}(X_2) \in S)
+\end{equation}
+\end{definition}
+
+This definition, cited from~\citet{Domingo:EnhancingDiffPrivMicroaggregation}, easier to understand than the original one given in~\citet{Dwork:DifferentialPrivacy}, states that, given an $\varepsilon$-differential privacy mechanism $\mathcal{M}$ and any possible output $r$, the presence or abscence of a participant (in terms of the dataset, a \textit{row}) will cause at most a multiplicative $e^\varepsilon$ change in the probability of the mechanism to output a response $r$.
