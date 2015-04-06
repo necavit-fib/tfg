@@ -54,8 +54,50 @@ Masking by correlated noise addition provides data with higher analytical utilit
 \subsection{Microaggregation}
 \label{Theory:SDCMethods:Microaggregation}
 
-%TODO
-\todo{microaggregation}
+Originally described for continuous (numerical) data, microaggregation is a family of SDC methods that, in the most general form, consist of making homogeneous groups of $k$ or more individuals (rows) from within the $X$ dataset to later replace their values with aggregated ones, this is, averages, computed on the groups themselves. These grouped and aggregated records conform the resulting $X'$ release dataset.
+
+Two main approaches are taken when considering microaggregation techniques: \textit{univariate} and \textit{multivariate} microaggregation. The difference remains in the number of variables used to perform the \textit{clustering} phase of the method: a single variable and multiple attributes, correspondingly. As can be assessed in the literature, the univariate approach causes either a very high information loss or a very high disclosure risk, thus not being appropriate for normal SDC uses~\citep[p. 63]{Hundepool:StatisticalDisclosureControl}. On the other hand, multivariate microaggregation, proposed by~\citet{Domingo:PracticalMicroaggregation}, is considered an excellent protection method and, as such, we will focus on this approach.
+
+It is important to note that this family of techniques are directly related to $k$-anonymity, as proved in~\citet{Domingo:KAnonMicroagg}.
+
+\subsubsection{Partition}
+
+The first and most computational complex task to do in a microaggregation method is to partition the dataset into $g$ groups of size at least $k > 1$, which is, indeed, a \textit{clustering} task. This proves to be quite difficult, but an optimal solution approximation with respect to information loss was already given in~\citep{Domingo:KAnonMicroagg} and further refined in~\citet{Domingo:MuAproxPolyTimeMicroagg}.
+
+The aim of these partition methods is to find the optimal $k$-partition that maximizes within-group homogeneity. Following~\citet{Domingo:PracticalMicroaggregation}, a practical information loss measure for microaggregation, relatively common in the clustering literature, is the ratio of within-group homogeneity over the total sum of squares (the sum of \textit{within} and \textit{between} group homogeneity)
+
+\begin{equation}\label{eq:clustering-info-loss}
+L = \frac{SSE}{SST}
+\end{equation}
+
+The within-group homogeneity ($SSE$) is defined as
+
+\begin{equation}
+SSE = \sum_{i=1}^{g} \sum_{j=1}^{n_i} (x_{ij} - \mathbf{\bar{x}_i})^2
+\end{equation}
+
+where $g$ denotes the total number of groups of $n_i$ elements each and $\mathbf{\bar{x}_i}$ denotes the $i$-th group centroid. The between-groups sum of squares, $SSA$, is
+
+\begin{equation}
+SSA = \sum_{i=1}^{g} n_i (\mathbf{\bar{x}_i} - \mathbf{\bar{x}})^2
+\end{equation}
+
+where $\mathbf{\bar{x}}$ is the average vector over the whole dataset. The total sum of squares is, then, $SST = SSE + SSA$.
+
+Because microaggregation replaces values in a group by the group centroid, if we recall~\eref{eq:clustering-info-loss}, it follows that the higher the within-group homogeneity, the lower the information loss is. Both the MDAV~\citep{Domingo:KAnonMicroagg} (Maximum Distance to Average Vector) and $\mu$-Approx~\citep{Domingo:MuAproxPolyTimeMicroagg} algorithms are built to partition the dataset into groups, while minimizing information loss, exploiting the previous theoretical result.
+
+\subsubsection{Aggregation}
+
+The aggregation step is the simplest of the ones that take place in a microaggregation setting: for each group $g$ of at least $k$ records and for each attribute $1 \leq j \leq m$, an \textit{aggregate} $\gamma$ is computed among the values of the $j$-th variable for the records in the group. This aggregate is then imputed to each record for its $j$-th attribute.
+
+Concerning the types of variables that are aggregated~\citep{Domingo:KAnonMicroagg}:
+
+\begin{itemize}
+	\item
+	\textbf{Continuous attributes:} the aggregated value correponds with the arithmetical mean of the selected values.
+	\item
+	\textbf{Categorical attributes:} the aggregated value should either be the median or the mode of the selected values.
+\end{itemize}
 
 \subsection{Rank Swapping}
 \label{Theory:SDCMethods:RankSwapping}
