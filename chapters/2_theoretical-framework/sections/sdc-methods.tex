@@ -102,11 +102,57 @@ Concerning the types of variables that are aggregated~\citep{Domingo:KAnonMicroa
 \subsection{Rank Swapping}
 \label{Theory:SDCMethods:RankSwapping}
 
-%TODO
-\todo{rank swapping}
+Also a fairly simple SDC method, the basic idea behind data swapping and its refinement, \textit{rank swapping}, is to transform a dataset by exchanging values of confidential variables in such a way that marginals are maintained. The method works as follows:
 
-\subsection{Laplacian Mechanism}
-\label{Theory:SDCMethods:LaplacianMechanism}
+First, values of a variable $j$ are ranked in ascending order, this is, they are \textit{sorted}. Each ranked value is then swapped with another ranked value, randomly chosen within a restricted range. This range is controlled by an input parameter $p$, normally denoting that swapped values cannot differ more than $p\%$ of the total number of records. This procedure is applied for every variable in the dataset.
 
-%TODO
-\todo{Laplacian}
+\subsection{Laplace Mechanism}
+\label{Theory:SDCMethods:LaplaceMechanism}
+
+We recall now the context of differential privacy to discuss a relatively extended method that is designed to achieve this privacy preserving guarantee. However, this technique is restricted to a particular family of data release functions. More precisely, it can only be applied to functions that provide a \textit{numerical} answer, like counting queries, for example. To understand this method, called \textit{Laplace mechanism}, we must review first the concept of \textit{global sensitivity} of a function.
+
+\begin{definition}~(Neighbour datasets)
+Given two datasets from a universe of datasets, $D_1, D_2 \in \mathcal{D}$, we call them \textit{neighbours} if they differ in just one record, which we indicate using the notation $|D_1 \Delta D_2| = 1$.
+\end{definition}
+
+\begin{definition}~(Global Sensitivity of a function)
+We define the global sensitivity of a numerical function $f : \mathcal{D} \rightarrow \mathbb{R}^w$, with $w \in \mathbb{N}^+$, over the universe of datasets $\mathcal{D}$, as
+\begin{equation}
+\Delta(f) = \max_{\substack{D_1, D_2 \in \mathcal{D} \\ |D_1 \Delta D_2| = 1}} \lVert f(D_1) - f(D_2) \rVert_{1}
+\end{equation}
+\end{definition}
+
+As we will now see, the Laplace mechanism is just a noise addition masking method, where the sensitivity of the release function $f$ drives the amount of noise being added to the response of $f$: the higher the sensitivity of the function, the higher the amount of noise added. If $f$ is applied to a dataset $D_1$ and then to a neighboring dataset $D_2$, if $f$ changes a lot, it means that we will have to add more noise to probably obtain the same output.
+
+\begin{definition}~(Laplace mechanism)
+Given a database $D \in \mathcal{D}$ and a function $f : \mathcal{D} \rightarrow \mathbb{R}^w$, with $w \in \mathbb{N}^+$ and global sensitivity $\Delta$, an $\varepsilon$-differential privacy mechanism $\mathcal{M}$ for releasing $f$ is to publish
+\begin{equation}
+\mathcal{M}(D) = f(D) + L
+\end{equation}
+where $L$ is a vector of random variables each drawn from a Laplace distribution $Lap(0, \frac{\Delta(f)}{\varepsilon})$.
+\end{definition}
+
+This mechanism ensures that $\varepsilon$-differential privacy is achieved for the release function $f$, as can be assessed in~\citet{Leoni:NonInteractiveDiffPriv} and~\citet{Domingo:EnhancingDiffPrivMicroaggregation}.
+
+\subsubsection*{Laplace distribution}
+
+On a quick note to understand the kind of noise being added through the Laplace mechanism, a Laplace distribution $Lap(\mu, b)$ has \textit{location} $\mu$ (which could be understood as the mean or the location of the \textit{peak} of the PDF of the distribution) and \textit{scale} parameter $b$. This last parameter is the one used to adjust the amount of perturbation the data or release method will receive.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\linewidth]{figures/laplace-pdf.png}
+	\label{fig:laplace-pdf}
+	\caption{Laplace distribution probability density function (PDF). Source: Wikipedia~\cite{web:Wiki:LaplaceDist}}
+\end{figure}
+
+The density function of the Laplace noise, also called \textit{double exponential}, is
+
+\begin{equation}
+P(x|\mu,b) = \frac{1}{2b}\exp(-\frac{|x-\mu|}{b})
+\end{equation}
+
+
+
+
+
+
