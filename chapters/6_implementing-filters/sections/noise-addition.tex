@@ -4,5 +4,23 @@
 \subsection{Design}
 \label{Implementation:NoiseAddition:Design}
 
-\subsection{Implementation details}
-\label{Implementation:NoiseAddition:Details}
+\subsection{Summary}
+\label{Implementation:NoiseAddition:Summary}
+
+The \texttt{NoiseAdditionFilter} implements a \todo{end sentence}.\tref{table:noiseaddition-summary} summarizes the main properties of the filter.
+
+
+\todo{TABLE}
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{@{}ll@{}}
+	\toprule
+	\multicolumn{2}{l}{\textbf{NoiseAdditionFilter}}                                \\ \midrule
+	\textbf{Parameters}   & $k$ (cluster size), $b$ (buffer size)                   \\ %TODO check this!
+	\textbf{Type of data} & Heterogeneous (both numeric and categorical attributes) \\
+	\textbf{Cost}         & $O(n)$                                                  \\ \bottomrule
+	\end{tabular}
+	\caption{\texttt{NoiseAdditionFilter} summary.}
+	\label{table:noiseaddition-summary}
+\end{table}

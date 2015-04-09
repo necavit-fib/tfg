@@ -4,114 +4,115 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>333</x>
-      <y>297</y>
+      <x>324</x>
+      <y>396</y>
       <w>126</w>
       <h>36</h>
     </coordinates>
     <panel_attributes>&lt;&lt;abstract&gt;&gt;
-/PrivacyFilter/</panel_attributes>
+*/PrivacyFilter/*</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>72</x>
-      <y>216</y>
+      <x>63</x>
+      <y>315</y>
       <w>126</w>
       <h>36</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
-InstanceStream</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>414</x>
-      <y>423</y>
-      <w>162</w>
-      <h>27</h>
-    </coordinates>
-    <panel_attributes>MicroaggregationFilter</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>54</x>
-      <y>423</y>
-      <w>162</w>
-      <h>27</h>
-    </coordinates>
-    <panel_attributes>NoiseAdditionFilter</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>234</x>
-      <y>423</y>
-      <w>162</w>
-      <h>27</h>
-    </coordinates>
-    <panel_attributes>RankSwappingFilter</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>315</x>
-      <y>216</y>
-      <w>153</w>
-      <h>36</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;abstract&gt;&gt;
-/AbstractStreamFilter/</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>531</x>
-      <y>225</y>
-      <w>180</w>
-      <h>36</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;interface&gt;&gt;
-InformationLossEstimator</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>729</x>
-      <y>225</y>
-      <w>162</w>
-      <h>36</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;interface&gt;&gt;
-DisclosureRiskEstimator
+*InstanceStream*
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>657</x>
-      <y>117</y>
+      <x>396</x>
+      <y>522</y>
+      <w>180</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>*MicroaggregationFilter*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>45</x>
+      <y>522</y>
+      <w>162</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>*NoiseAdditionFilter*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>225</x>
+      <y>522</y>
+      <w>162</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>*RankSwappingFilter*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>297</x>
+      <y>315</y>
+      <w>171</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;abstract&gt;&gt;
+*/AbstractStreamFilter/*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>504</x>
+      <y>324</y>
+      <w>198</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+*InformationLossEstimator*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>720</x>
+      <y>324</y>
+      <w>189</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+*DisclosureRiskEstimator*
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>648</x>
+      <y>216</y>
       <w>126</w>
       <h>36</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
-FilterEstimator</panel_attributes>
+*FilterEstimator*</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>369</x>
-      <y>225</y>
+      <x>360</x>
+      <y>324</y>
       <w>44</w>
       <h>89</h>
     </coordinates>
@@ -121,32 +122,32 @@ FilterEstimator</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>171</x>
-      <y>189</y>
-      <w>161</w>
+      <x>162</x>
+      <y>288</y>
+      <w>152</w>
       <h>63</h>
     </coordinates>
     <panel_attributes>lt=-&gt;
 inputStream</panel_attributes>
-    <additional_attributes>144;45;27;45</additional_attributes>
+    <additional_attributes>135;45;27;45</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>117</x>
-      <y>297</y>
-      <w>153</w>
+      <x>99</x>
+      <y>396</y>
+      <w>162</w>
       <h>36</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
-AnonymizationFilter</panel_attributes>
+*AnonymizationFilter*</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>108</x>
-      <y>306</y>
+      <x>99</x>
+      <y>405</y>
       <w>305</w>
       <h>134</h>
     </coordinates>
@@ -156,8 +157,8 @@ AnonymizationFilter</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>369</x>
-      <y>306</y>
+      <x>360</x>
+      <y>405</y>
       <w>134</w>
       <h>134</h>
     </coordinates>
@@ -167,8 +168,8 @@ AnonymizationFilter</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>288</x>
-      <y>306</y>
+      <x>279</x>
+      <y>405</y>
       <w>125</w>
       <h>134</h>
     </coordinates>
@@ -178,30 +179,30 @@ AnonymizationFilter</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>747</x>
-      <y>324</y>
-      <w>207</w>
+      <x>729</x>
+      <y>423</y>
+      <w>243</w>
       <h>27</h>
     </coordinates>
-    <panel_attributes>BufferedIndividualRecordLinker</panel_attributes>
+    <panel_attributes>*BufferedIndividualRecordLinker*</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>594</x>
-      <y>324</y>
+      <x>585</x>
+      <y>423</y>
       <w>126</w>
       <h>27</h>
     </coordinates>
-    <panel_attributes>SSEEstimator</panel_attributes>
+    <panel_attributes>*SSEEstimator*</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>243</x>
-      <y>288</y>
+      <x>234</x>
+      <y>387</y>
       <w>107</w>
       <h>44</h>
     </coordinates>
@@ -211,19 +212,19 @@ AnonymizationFilter</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>594</x>
-      <y>423</y>
+      <x>585</x>
+      <y>522</y>
       <w>162</w>
       <h>27</h>
     </coordinates>
-    <panel_attributes>MADPFilter</panel_attributes>
+    <panel_attributes>*MADPFilter*</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>369</x>
-      <y>306</y>
+      <x>360</x>
+      <y>405</y>
       <w>323</w>
       <h>134</h>
     </coordinates>
@@ -233,20 +234,20 @@ AnonymizationFilter</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>396</x>
-      <y>135</y>
+      <x>387</x>
+      <y>234</y>
       <w>108</w>
       <h>36</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
-StreamFilter</panel_attributes>
+*StreamFilter*</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>423</x>
-      <y>144</y>
+      <x>414</x>
+      <y>243</y>
       <w>44</w>
       <h>89</h>
     </coordinates>
@@ -256,20 +257,21 @@ StreamFilter</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>270</x>
-      <y>81</y>
-      <w>162</w>
+      <x>252</x>
+      <y>180</y>
+      <w>180</w>
       <h>36</h>
     </coordinates>
     <panel_attributes>&lt;&lt;abstract&gt;&gt;
-/AbstractOptionHandler/</panel_attributes>
+*/AbstractOptionHandler/*
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>324</x>
-      <y>90</y>
+      <x>315</x>
+      <y>189</y>
       <w>44</w>
       <h>143</h>
     </coordinates>
@@ -279,8 +281,8 @@ StreamFilter</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>828</x>
-      <y>234</y>
+      <x>819</x>
+      <y>333</y>
       <w>44</w>
       <h>107</h>
     </coordinates>
@@ -290,8 +292,8 @@ StreamFilter</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>630</x>
-      <y>234</y>
+      <x>621</x>
+      <y>333</y>
       <w>44</w>
       <h>107</h>
     </coordinates>
@@ -301,8 +303,8 @@ StreamFilter</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>594</x>
-      <y>126</y>
+      <x>585</x>
+      <y>225</y>
       <w>143</w>
       <h>116</h>
     </coordinates>
@@ -312,8 +314,8 @@ StreamFilter</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>693</x>
-      <y>126</y>
+      <x>684</x>
+      <y>225</y>
       <w>134</w>
       <h>116</h>
     </coordinates>
@@ -323,8 +325,8 @@ StreamFilter</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>432</x>
-      <y>234</y>
+      <x>423</x>
+      <y>333</y>
       <w>134</w>
       <h>89</h>
     </coordinates>
@@ -334,8 +336,8 @@ StreamFilter</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>432</x>
-      <y>234</y>
+      <x>423</x>
+      <y>333</y>
       <w>359</w>
       <h>107</h>
     </coordinates>
