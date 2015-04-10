@@ -69,27 +69,7 @@ Concerning the clustering step of microaggregation, we have seen that the MDAV a
 
 Our proposal is to use a $k$-Nearest Neighbours (KNN) algorithm to \textit{continuously} partition the sliding window and be able to provide anonymized instances much faster, by building just \textit{one} cluster each time a new instance is requested to the filter. The records in this single cluster are then aggregated and the target instance is returned. The computational cost of this approach is quite lower than that of the MDAV and $\mu$-Approx heuristics, as long as the sliding window size remains relatively small.
 
-The idea of this partition procedure, formally explained in~\alref{al:KNN-partition}, is to calculate, for all instances not yet anonymized, the distance to the target ($\tau$), keeping track of the $k-1$ nearest ones. If an instance is closer than the current furthest, the latter is removed from the cluster and the former is added. At the end of the buffer traversal, together with $\tau$, the instances that have been kept will form the next cluster of the stream partition. The distance metric used is a modification of the Euclidean distance which also takes into account categorical variables (see~\procref{al:distance}):
-
-\begin{procedure}
-\KwData{$x,y$ instances}
-\KwResult{the distance measure, $d$}
-\Begin{
-	$d \leftarrow 0$\;
-	\For{$i \in \mathrm{attributes}(x)$}{
-		\eIf{$\mathrm{isNumeric}(i)$}{
-			$d \leftarrow d + (x_i - y_i)^2$\;
-		}{
-			\If{$x_i \neq y_i$}{
-				$d \leftarrow d + 1$\;
-			}
-		}
-	}
-	$d \leftarrow \sqrt{d}$\;
-	\KwRet $d$\;
-}
-\caption{dist(x,y)\label{al:distance}}
-\end{procedure}
+The idea of this partition procedure, formally explained in~\alref{al:KNN-partition}, is to calculate, for all instances not yet anonymized, the distance to the target ($\tau$), keeping track of the $k-1$ nearest ones. If an instance is closer than the current furthest, the latter is removed from the cluster and the former is added. At the end of the buffer traversal, together with $\tau$, the instances that have been kept will form the next cluster of the stream partition. The distance metric used is the same than that used by the default disclosure risk estimator (see~\sref{Implementation:Estimators:RecordLinker} and~\procref{al:distance}).
 
 The KNN algorithm uses a \textit{priority queue}\footnote{A \textit{max-heap} is used to keep the greatest element on top of the queue.} to hold the $k-1$ nearest neighbours to the target, $\tau$. The queue works over \textit{distance-index} pairs $\langle d, i\rangle$, but is actually indexed by $d$, holding the greatest value on the top of the queue. This way, it is very cheap (constant time) to know whether a given instance $x$ is closer than the current furthest instance from $\tau$. Insertions are also cheap, with an upper bound cost of $O(\mathrm{log}(k))$.
 
@@ -124,7 +104,9 @@ The overall cost of the procedure, when implemented with a priority queue, depen
 
 \subsubsection{Aggregation}
 
-After a cluster containing the target instance $\tau$ has been obtained from the previous %TODO
+After a cluster has been obtained from the previous partition step, the instances of the cluster are aggregated, this is, the values of their attributes are imputed with the values of the \textit{centroid} of the cluster. For each attribute, the arithmetic mean (in the case that the attribute is numeric) or the mode (if the attribute is nominal) are calculated over the instances of the cluster. We do not provide any figure or algorithm concerning this step, due its simplicity.
+
+The computational cost of the aggregation step is directly related to the size $k$ of the clusters and can be approximated to $\Theta(2 \cdot m \cdot k)$, where $m$ is the number of attributes (a first traversal to compute the averages and a second one to impute the values). However, given the high complexity of the partition algorithm ($O(n \cdot b \cdot \mathrm{log}(k))$) and provided that $m \ll n$ and $k \ll b, n$, the overall cost of this microaggregation implementation is dominated by the cost of the clustering step.
 
 \subsection{Summary}
 \label{Implementation:Microaggregation:Summary}

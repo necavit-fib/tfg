@@ -10,7 +10,7 @@ We have already showed along this report that \textit{filters} are a feature of 
 
 Thanks to the object-oriented capabilities of the Java language, we can design and implement a generic abstract data type for all proposed SDC algorithms. By doing so, we will be able to centralize some of the common logic behind them. The abstract type of the privacy filters is the \texttt{PrivacyFilter} class. An incomplete UML diagram of the specification of this class and its most relevant parent types can be seen in~\fref{fig:privacy-filter-uml}.
 
-Concerning the responsibility\footnote{In object-oriented programming, the \textit{single responsibility principle} states that every class should have responsibility over a single part of the functionality provided by the software, and that responsibility should be entirely encapsulated by the class (\citet{web:SOLID}).} of this class, there is a main task that the \texttt{PrivacyFilter} is meant to address: the measurement or \textit{evaluation} of the \textbf{disclosure risk} (DR) and the \textbf{information loss} (IL). The approach is to let the SDC method (the \textit{concrete} subclass) anonymize the \textit{instances}\footnote{In the MOA context, records in a dataset (in a stream) are called \textit{instances} and are represented using the \texttt{Instance} interface.} of the stream and collect them, along with the original instances that have been processed. The evaluation of both magnitudes, DR and IL, is performed using these \textit{pairs} of instances. The mechanism is best understood with the schematic presented in~\fref{fig:privacy-filter-schematic}.
+Concerning the responsibility\footnote{In object-oriented programming, the \textit{single responsibility principle} states that every class should have responsibility over a single part of the functionality provided by the software, and that responsibility should be entirely encapsulated by the class (\citet{web:SOLID}).} of this class, there is a main task that the \texttt{PrivacyFilter} is meant to address: the measurement or \textit{evaluation} of the \textbf{disclosure risk} (DR) and the \textbf{information loss} (IL). The approach is to let the SDC method (the \textit{concrete} subclass) anonymize the \textit{instances}\footnote{In the MOA context, records in a dataset (in a stream) are called \textit{instances} and are represented using the \texttt{Instance} interface.} of the stream and collect them, along with the original instances that have been processed. The evaluation of both magnitudes, DR and IL, is performed by \textit{estimators} using these \textit{pairs} of instances (see Estimators, below). The mechanism is best understood with the schematic presented in~\fref{fig:privacy-filter-schematic}.
 
 \begin{figure}[h]
 	\centering
@@ -30,7 +30,7 @@ The most important of the methods defined in the \texttt{AnonymizationFilter} ty
 	\texttt{nextAnonymizedInstancePair() : InstancePair}
 \end{center}
 
-which is left to be implemented (it is \textit{abstract} at the \texttt{PrivacyFilter} level) by any subclass. This way, we can use \textit{inversion of control}\footnote{The \textit{Hollywood principle} or \textit{inversion of control} pattern is a software design methodology that takes its name from the cliché response given to amateurs auditioning in Hollywood: "Don't call us, we'll call you". It is a useful paradigm that assists in the development of code with high cohesion and low coupling that is easier to debug, maintain and test.} to force a subtype define the concrete behaviour of the function, while still conforming to a precise \textit{contract}. The \texttt{InstancePair} returned by this abstract method is just a tuple containing both the original and anonymized instances that should be streamed next.
+which is left to be implemented (it is \textit{abstract} at the \texttt{PrivacyFilter} level) by any subclass. This way, we can use \textit{inversion of control}\footnote{The \textit{Hollywood principle} or \textit{inversion of control} pattern is a software design methodology that takes its name from the cliché response given to amateurs auditioning in Hollywood: "Don't call us, we'll call you". It is a useful paradigm that assists in the development of code with high cohesion and low coupling that is easier to debug, maintain and test.} to force a subtype define the concrete behaviour of the function, while still conforming to a precise \textit{contract}. The \texttt{InstancePair} returned by this abstract method is just a \textit{pair} structure containing both the original and anonymized instances that should be streamed next. If we say that $x$ is an instance and $x'$ its anonymized counterpart, the \texttt{InstancePair} class would simply be the tuple $\langle x, x' \rangle$.
 
 \begin{figure}[h]
 	\centering
@@ -42,7 +42,13 @@ which is left to be implemented (it is \textit{abstract} at the \texttt{PrivacyF
 \subsubsection*{Estimators}
 \label{Implementation:PrivacyFilter:PrivacyFilter:Estimators}
 
-The estimators used by the \texttt{PrivacyFilter} class are desgined to be modular and, most of all, easily modifiable: they are just interfaces defining a simple contract that all estimators must implement. The methods belonging to such contracts can be seen in~\fref{fig:estimators-uml} (the concrete estimators implementation is explained in~\sref{Implementation:Estimators}).
+The estimators used by the \texttt{PrivacyFilter} class are desgined to be modular and, most of all, easily modifiable: they are just interfaces defining a contract that all estimators must implement. The methods belonging to such contracts can be seen in~\fref{fig:estimators-uml} (the concrete estimators implementation is explained in~\sref{Implementation:Estimators}). Again, there is one particular method that is most important in the estimators context:
+
+\begin{center}
+\texttt{performEstimationForInstances(InstancePair : instancePair)}
+\end{center}
+
+This method is the generic way for the \texttt{PrivacyFilter} to feed the estimators with $\langle x, x' \rangle$ tuples (\texttt{InstancePair}s). The estimators have the responsibility of performing the necessary calculations using this stream of pairs of instances.
 
 \begin{figure}[h]
 	\centering
@@ -51,7 +57,7 @@ The estimators used by the \texttt{PrivacyFilter} class are desgined to be modul
 	\label{fig:estimators-uml}
 \end{figure}
 
-Finally, the disclosure risk and information loss estimators used by a \texttt{PrivacyFilter} can be configured at runtime by setting the appropriate \textit{options}\footnote{The MOA framework makes extensive use of configurable \textit{options}, which can be set either on a command line execution or via the GUI that MOA provides.} of the filter (see~\sref{Implementation:Deployment:Examples} for examples on how to use the MOA framework and the privacy filters extension).
+Finally, the DR and IL estimators used by a \texttt{PrivacyFilter} can be configured at runtime by setting the appropriate \textit{options}\footnote{The MOA framework makes extensive use of configurable \textit{options}, which can be set either on a command line execution or via the GUI that MOA provides.} of the filter (see~\sref{Implementation:Deployment:Examples} for examples on how to use the MOA framework and the privacy filters extension).
 
 \subsection{Filters ecosystem}
 \label{Implementation:PrivacyFilter:Ecosystem}

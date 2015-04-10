@@ -1,8 +1,12 @@
 \section{\texttt{NoiseAdditionFilter}}
 \label{Implementation:NoiseAddition}
 
+The \textit{uncorrelated} noise addition mechanism that was reviewed in~\sref{Theory:SDCMethods:NoiseAddition} to protect microdata is implemented in the \texttt{NoiseAdditionFilter} class. Given the low level of data protection that this family of algorithms are capable of~\citep{Brand:NoiseAddition}, we have not implemented any further sofistication, such as estimating correlated noise or using (non)-linear transformations to obtain it.
+
 \subsection{Design}
 \label{Implementation:NoiseAddition:Design}
+
+The \texttt{NoiseAdditionFilter} adds uncorrelated noise to the values of 
 
 \subsection{Summary}
 \label{Implementation:NoiseAddition:Summary}

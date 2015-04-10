@@ -199,7 +199,7 @@
 %	defined as \examname above so you cite it as \examname
 %----------------------------------------------------------------------------------------
 
-\thesistitle{Implementing privacy-preserving filters in the MOA stream mining framework} % Your thesis title - this is used in the title and abstract
+\thesistitle{Implementing Privacy-Preserving Filters in the MOA Stream Mining Framework} % Your thesis title - this is used in the title and abstract
 %-------------------------------------------------  
 \supervisor{Dr. Jordi \textsc{Nin Guerrero}} % You supervisor's name - this is used in the title page
 %-------------------------------------------------   

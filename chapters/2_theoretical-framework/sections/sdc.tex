@@ -30,7 +30,7 @@ As a quick and superficial review, the algorithms\footnote{We will not cover eve
 	\end{itemize}
 \end{itemize}
 
-\subsection{Disclosure \& types of variables}
+\subsection{Definitions of disclosure}
 \label{Theory:SDC:DisclosureTypes}
 
 When assessing the disclosure risks of a given dataset (or data stream) we must have a look at the different kind of variables this data is composed of. We will stick to a classic~\citep{Templ:IntroSDC} categorization of such attributes into three groups, which need not be disjunctive, as follows:
@@ -59,6 +59,7 @@ Concerning the safety of the released data, \textbf{Disclosure Risk} (DR) is a c
 As noted in \citep{Domingo:DiscRiskAssessment}, there is not much literature on disclosure risk that can be used for a broad class of perturbative methods; disclosure risk measures tend instead to be method-specific. Therefore, empirical methods are most used to assess disclosure risk for these kind of methods.
 
 \subsubsection{Record linkage}
+\label{Theory:SDC:DiscRisk:RecordLinkage}
 
 Most notably, the mechanisms used to measure disclosure risk follow a \textit{record linkage} approach. This is, after an SDC method has been used to anonymize data, a record linkage procedure is applied to the original and released (masked, anonymized) datasets. This \textit{linkage} attempts to identify, for each record in the masked dataset, which is the corresponding record in the original dataset. If such correspondance is verified, the record is labeled as \textit{correctly linked}. A generic measure for disclosure risk is the percentage of correctly linked records from the total amount in the dataset.
 

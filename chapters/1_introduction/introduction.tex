@@ -10,7 +10,7 @@ in a broad sense. The structure of this document is also outlined in the last se
 \section{Context}
 \label{Introduction::Context}
 
-We will now provide an overview of the two main concepts that, when combined,
+An overview is now given of the two main concepts that, when combined,
 drive the motivation behind the inception and development of this project.
 
 \subsection{Data mining}
@@ -20,12 +20,12 @@ Information society produces vast amounts of data all over the world.
 This data comes from innumerable sources and in diverse formats, and has been stored
 for years in data warehouses, waiting to be processed. With the continuous increase
 in computing power, due to the recent advances in software and hardware technologies,
-the machine learning field, more commonly known as \textit{data mining}, has arisen,
-allowing us to exploit this stored data and distill knowledge from it.
+the machine learning field, also known as \textit{data science}, has arisen,
+allowing us to exploit this stored data and extract knowledge from it.
 
-Data mining is, indeed, a holistic process, where many different disciplines are
+Data science is, indeed, a holistic process, where many different disciplines are
 involved, from data acquisition and storage, through its selection, filtering and
-analysis up to information extraction, visualization and knowledge discovery.
+analysis up to knowledge extraction, visualization and discovery.
 
 \begin{figure}[h]
 	\centering
@@ -34,27 +34,27 @@ analysis up to information extraction, visualization and knowledge discovery.
 	\label{fig:data-mining}
 \end{figure}
 
-Data mining enables a better understanding of human or natural processes and provides
+Data science enables a better understanding of human or natural processes and provides
 us with means to identify trends, predict future events or discover useful patterns.
 Its uses range from scientific and medical applications to social sciences or business
 administration~\citep{Fayyad:FromDataMining}.
 
 \subsubsection{Facing the limits}
 
-Despite lots of effort is put into enhancing different data mining processes, there still
-are many cases where these techniques fail to perform correctly; mainly, it is a matter of scale.
+Despite lots of efforts are put into enhancing different data mining processes, there still
+are many cases where these techniques fail to perform well, mainly because of the scale of
+the problems that we face nowadays.
 
-On one hand, traditional data mining workflows cannot cope with the really massive
+On the one hand, traditional data mining workflows cannot cope with the really massive
 data sets that are available nowadays, if performed on a common infrastructure.
 To solve this issue, clusters of hundreds or thousands of computers are used to run
-such analysis. It is costly and complex but, doing so, we can mine data that we could not
-some time ago.
+such analysis. It is costly and complex but, doing so, we can mine amounts of data in a way that
+was unthinkable some time ago.
 
 On the other hand, we face another type of scaling problem. In some situations, data
 acquisition throughput is so high that it cannot be stored anyway, so another approach
-is needed to avoid the loss of information that it could deliver us. Moreover, we might
-not want to store it, even when we could, but yet we want to analyze it to extract
-knowledge from it, as soon as we received it. Both these scenarios are addressed with a
+is needed to avoid this loss of information, because we still want to analyze it to extract
+knowledge from it. Both these scenarios are addressed with a
 series of techniques known as \textit{stream mining}.
 
 \subsubsection{Stream mining}
@@ -92,15 +92,15 @@ with society and technology is given in \sref{Practical::Privacy}.
 \subsection{Privacy Preserving Data Mining}
 \label{Introduction::Context::PPSM}
 
-Data mining technologies have become a relevant debate topic nowadays, concerning what
+Nowadays, data mining technologies have become a relevant debate topic, concerning what
 information is collected from individuals, who owns it and what are the purposes behind
 its gathering. Information technologies deliver us many benefits at many levels - safer
 streets, cheaper communications, better health systems, more convenient shopping - but
 at the high cost of losing our privacy.
 
 Knowledge discovery processes need data to work and, in most cases, it is sensitive and
-personal. Moreover, it is massively collected and stored and analyzed without us knowing
-much about it. Besides the lack of consent in this data acquisition stage of the process,
+personal. Moreover, it is massively collected, stored and analyzed without the users consent.
+Besides this lack of consent in the data acquisition stage of the process,
 data mining poses a bigger thread on individuals: information disclosure. Sensitive data
 must be treated accordingly, which involves not only good IT security practices to avoid
 information leaks, but a responsible treatment when research results are published.
@@ -111,14 +111,14 @@ information leaks, but a responsible treatment when research results are publish
 has given to what the data mining community calls Privacy Preserving Data Mining (PPDM).
 This field, whatever its preferred name is, deals with controlling that information about
 specific individuals is not extracted from statistical summary results. Also, if full
-datasets are to be released, PPDM methods should be applied to data in order to preserve
+datasets are to be released, SDC methods should be applied to data in order to preserve
 user's privacy, whilst maintaining the statistical significance of it, i. e., the amount
 of information - knowledge - that this data can provide.
 
 \section{The project: moa-ppsm}
 \label{Introduction::moa-ppsm}
 
-Having reviewed the main concepts to which this project is related, we can now outline
+Having reviewed the main concepts to which this project is related to, we can now outline
 its main purpose, once we take a closer look to the technical environment in which it
 will be developed.
 
@@ -173,6 +173,6 @@ for the MOA stream mining framework}. This is, adapt some well-known SDC methods
 \section{Report structure}
 \label{Introduction::Structure}
 
-The structure of this report is meant to give an overview of the development process of the project, from the theoretical foundations that are necessary to understand the work to the final results and conclusions.
+The structure of this report gives an overview of the development process of the project, from the theoretical foundations that are necessary to understand the work to the final results and conclusions.
 
 \cref{Chapter2TheoreticalFramework} covers the theory basis behind the SDC methods implemented in the project and provides some insights on different stream mining approaches. \cref{Chapter3StateOfTheArt} discusses state of the art solutions concerning SDC for static databases (not streaming data). \cref{Chapter4PracticalAspects} analyzes more thoroughly the motivation behind privacy-preserving data mining by discussing \textit{practical} questions like the relationship between society and privacy or the legal framework that applies to the context of this project. Project management is layed out in \cref{Chapter5ProjectManagement} and then the report turns to more technical related topics, such as implementation details and desgin decisions, covered in \cref{Chapter6ImplementingFilters}, as well as benchmarking, in \cref{Chapter7Benchmarking}. Finally, the report and project conclusions are given in \cref{Chapter8conclusions}, covering both achievements and possible future work.

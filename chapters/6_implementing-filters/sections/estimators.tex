@@ -1,8 +1,62 @@
 \section{Estimators}
 \label{Implementation:Estimators}
 
+We have implemented a pair of disclosure risk and information loss estimators, conforming to the corresponding interfaces described in~\fref{fig:estimators-uml}. These concrete implementations are the default estimators of the \texttt{PrivacyFilter}, but can be configured as necessary, being able to plug in different methods.
+
 \subsection{\texttt{BufferedIndividualRecordLinker}}
-\label{Implementation:Deployment:RecordLinker}
+\label{Implementation:Estimators:RecordLinker}
+
+The disclosure risk estimator, called \texttt{BufferedIndividualRecordLinker}, uses a distance-based record linkage approach (see~\sref{Theory:SDC:DiscRisk:RecordLinkage}) to estimate the risk of records re-identification.
+
+The estimator holds a buffer $W$, thus its name, of the last $b$ original instances, this is, non-anonymized records, with size $\vert W \vert = b$ as an input parameter. Each time that a $\langle x, x' \rangle$ pair is passed in to the estimator, it adds the original instance $x$ to the buffer, deletes the oldest seen one, and performs a record linkage trying to re-identify $x'$ with any instance in the buffer.
+
+The re-identification works as follows: for each instance $w_i$, with $0 \leq i \leq b-1$, we store it a set $G$ if its distance to $x'$ is the minimum one recorded, named $\delta$. Whenever an instance is found at distance $d < \delta$, all the instances are removed from $G$ and both this set and $\delta$ are updated accordingly. At the end of the buffer traversal, the target original instance is checked to see if it is in the set $G$. The \textit{linkage probability} for an anonymized instance $x'$ is calculted as
+
+\begin{equation}
+P(x') =
+\begin{cases}
+0                       & \text{if } x \notin G \\
+\frac{1}{\vert G \vert} & \text{if } x \in G
+\end{cases}
+\end{equation}
+
+Being $X$ the set of all the instances already processed and $\vert X \vert = n$, the disclosure risk is estimated in a $[0,1]$ range as
+
+\begin{equation}
+DR = \frac{\sum_{x \in X}P(x')}{n}
+\end{equation}
+
+Finally, the distance measure used in the estimator follows a modification of the Euclidean distance which also takes into account categorical variables. It is best explained with the pseudo-code representation shown in~\procref{al:distance}.
+
+\begin{procedure}[H]
+\KwData{$x,y$ instances}
+\KwResult{the distance measure, $d$}
+\Begin{
+	$d \leftarrow 0$\;
+	\For{$i \in \mathrm{attributes}(x)$}{
+		\eIf{$\mathrm{isNumeric}(i)$}{
+			$d \leftarrow d + (x_i - y_i)^2$\;
+		}{
+			\If{$x_i \neq y_i$}{
+				$d \leftarrow d + 1$\;
+			}
+		}
+	}
+	$d \leftarrow \sqrt{d}$\;
+	\KwRet $d$\;
+}
+\caption{dist(x,y)\label{al:distance}}
+\end{procedure}
 
 \subsection{\texttt{SSEEstimator}}
-\label{Implementation:Deployment:SSE}
+\label{Implementation:Estimators:SSE}
+
+The information loss estimator implemented as a default for the \texttt{PrivacyFilter} class uses an unbounded approach (see~\sref{Theory:SDC:InfoLoss}) to measure the amount of useful information that is lost with the application of such privacy filters.
+
+The aim of the implementation given in this project is to provide a way to compare the diverse privacy filters, this is, we do not intend to achieve a reliable and precise IL measurement. Therefore, the estimation is simply based on the \textit{sum of square errors} or SSE between the original and anonymized instances, $x$ and $x'$, respectively. If we call $X$ to the set of original instances already processed and $X'$ to its anoymized counterparts, the SSE is calculated as
+
+\begin{equation}
+SSE = \sum_{x \in X} \sum_{x' \in X'} (\mathrm{dist}(x,x'))^2
+\end{equation}
+
+where the distance metric used is the same that was defined for the DR estimator in~\sref{Implementation:Estimators:RecordLinker} (see~\procref{al:distance}). The main drawback in using this approach, besides it being more difficult to make comparisons due to not being a bounded measure, is that categorical attributes are overweighted, thus distorting the validity of the estimation.
