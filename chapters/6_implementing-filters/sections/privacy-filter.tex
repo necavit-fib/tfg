@@ -45,7 +45,7 @@ which is left to be implemented (it is \textit{abstract} at the \texttt{PrivacyF
 The estimators used by the \texttt{PrivacyFilter} class are desgined to be modular and, most of all, easily modifiable: they are just interfaces defining a contract that all estimators must implement. The methods belonging to such contracts can be seen in~\fref{fig:estimators-uml} (the concrete estimators implementation is explained in~\sref{Implementation:Estimators}). Again, there is one particular method that is most important in the estimators context:
 
 \begin{center}
-\texttt{performEstimationForInstances(InstancePair : instancePair)}
+\texttt{performEstimationForInstances(instancePair : InstancePair)}
 \end{center}
 
 This method is the generic way for the \texttt{PrivacyFilter} to feed the estimators with $\langle x, x' \rangle$ tuples (\texttt{InstancePair}s). The estimators have the responsibility of performing the necessary calculations using this stream of pairs of instances.

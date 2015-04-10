@@ -6,22 +6,33 @@ The \textit{uncorrelated} noise addition mechanism that was reviewed in~\sref{Th
 \subsection{Design}
 \label{Implementation:NoiseAddition:Design}
 
-The \texttt{NoiseAdditionFilter} adds uncorrelated noise to the values of 
+The \texttt{NoiseAdditionFilter} adds uncorrelated noise to the values of the attributes of an instance $x$, whether they are numerical or categorical. This is achieved using an array of \textit{observers}, one for each variable. If an attribute is numerical, its associated observer is a \texttt{GaussianEstimator}, an existing class in the MOA framework that allows us to incrementally (thus best suited to streaming data) estimate the properties of a gaussian distributed variable: the \textit{mean} $\mu$ and the \textit{variance} $\sigma^2$ (or standard deviation, if desired). On the other hand, for each categorical attribute, its observer stores a set of all the different values that previously processed instances had.
+
+The filter has two input parameters: $a$ and $c$, both real numbers in the $[0,1]$ range, which act as a scaling factor of the noise being applied to \textit{attributes} and to the \textit{class} variable, respectively.
+
+We denote by $x_i$ the value of the $i$-th attribute of the instance $x$ and by $x_i'$ its masked (distorted) counterpart. For a numeric variable, the noisy values are calculated as
+
+\begin{equation}
+x_i' = x_i + \beta\cdot\sigma\cdot\epsilon
+\end{equation}
+
+where $\beta \in [0,1]$ is one of the input parameters $a$ or $c$, $\sigma$ is the standard deviation estimate, obtained from the attribute's \texttt{GaussianEstimator} observer and, finally, $\epsilon$ is drawn from a gaussian random variable $\varepsilon \sim N(0,1)$.
+
+For a categorical variable $i$, its value for a given instance, $x_i$, is replaced by another value $x_i' \in \mathrm{Range}(i)$. Given that MOA encodes the values of categorical attributes as natural numbers, we can simply select $x_i'$ from a uniform discrete random variable bound to the range of the attribute as it is estimated by its observer. In order to preserve the scale of the amount of noise being added, this replacement only takes place if $\epsilon < \beta$, with $\beta$ being either the $a$ or $c$ parameter and $\epsilon$ drawn from a random variable $\varepsilon \sim N(0,1)$.
+
+Finally, because no complex processing is needed to implement this filter, its computational cost bounded by $O(n)$, with $n$ being the number of instances anonymized by the algorithm.
 
 \subsection{Summary}
 \label{Implementation:NoiseAddition:Summary}
 
-The \texttt{NoiseAdditionFilter} implements a \todo{end sentence}.\tref{table:noiseaddition-summary} summarizes the main properties of the filter.
-
-
-\todo{TABLE}
+The \texttt{NoiseAdditionFilter} implements an uncorrelated noise addition scheme to the instances of the filtered stream.~\tref{table:noiseaddition-summary} summarizes the main properties of the filter.
 
 \begin{table}[h]
 	\centering
 	\begin{tabular}{@{}ll@{}}
 	\toprule
 	\multicolumn{2}{l}{\textbf{NoiseAdditionFilter}}                                \\ \midrule
-	\textbf{Parameters}   & $k$ (cluster size), $b$ (buffer size)                   \\ %TODO check this!
+	\textbf{Parameters}   & $a$, $c$ scaling factors of the noise added for \textit{a}ttributes and \textit{c}lass variable  \\
 	\textbf{Type of data} & Heterogeneous (both numeric and categorical attributes) \\
 	\textbf{Cost}         & $O(n)$                                                  \\ \bottomrule
 	\end{tabular}
