@@ -15,7 +15,7 @@ Concerning the responsibility\footnote{In object-oriented programming, the \text
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.8\textwidth]{figures/privacy-filter-schematic.pdf}
-	\caption{A schematic of the tasks performed by the \texttt{PrivacyFilter} class, showing the stream data flow.}
+	\caption[\texttt{PrivacyFilter} data flow schematic.]{A schematic of the tasks performed by the \texttt{PrivacyFilter} class, showing the stream data flow.}
 	\label{fig:privacy-filter-schematic}
 \end{figure}
 
@@ -35,7 +35,7 @@ which is left to be implemented (it is \textit{abstract} at the \texttt{PrivacyF
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1.0\textwidth]{figures/class_PrivacyFilter.pdf}
-	\caption{UML class diagram of the relevant types in the \texttt{PrivacyFilter} class hierarchy. Notice that not all the involved types are shown.}
+	\caption[\texttt{PrivacyFilter} type hierarchy diagram.]{UML class diagram of the relevant types in the \texttt{PrivacyFilter} class hierarchy. Notice that not all the involved types are shown.}
 	\label{fig:privacy-filter-uml}
 \end{figure}
 
@@ -53,7 +53,7 @@ This method is the generic way for the \texttt{PrivacyFilter} to feed the estima
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.8\textwidth]{figures/class_Estimators.pdf}
-	\caption{Class diagram of the \texttt{FilterEstimator} type hierarchy.}
+	\caption[\texttt{FilterEstimator} type hierarchy diagram.]{Class diagram of the \texttt{FilterEstimator} type hierarchy.}
 	\label{fig:estimators-uml}
 \end{figure}
 
@@ -67,13 +67,13 @@ Having reviewed the basic \texttt{PrivacyFilter} generic type, we can now provid
 \begin{figure}
 	\centering
 	\includegraphics[width=0.5\textwidth]{figures/moa-ppsm-packages.pdf}
-	\caption{Package organization of the privacy filters. \textbf{New} packages (not existing in the MOA framework) are shown in bold. \textit{Existing} packages that have been extended with new types are shown in italics.}
+	\caption[Package diagram of the privacy filters ecosystem.]{Package organization of the privacy filters. \textbf{New} packages (not existing in the MOA framework) are shown in bold. \textit{Existing} packages that have been extended with new types are shown in italics.}
 	\label{fig:moa-ppsm-packages}
 \end{figure}
 
 \begin{figure}
 	\centering
 	\includegraphics[width=1.0\textwidth]{figures/refactored-ppsm-class-diagram.pdf}
-	\caption{Class diagram of the privacy filters ecosystem. Only the relevant types are shown and no method or member specifications have been included.}
+	\caption[Class diagram of the privacy filters ecosystem.]{Class diagram of the privacy filters ecosystem. Only the relevant types are shown and no method or member specifications have been included.}
 	\label{fig:moa-ppsm-class-uml}
 \end{figure}

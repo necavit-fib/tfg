@@ -63,7 +63,7 @@ Concerning the clustering step of microaggregation, we have seen that the MDAV a
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.9\textwidth]{figures/microaggregation-schematic-1.pdf}
-	\caption{$k$-Nearest Neighbours based microaggregation schematic of a whole processing step (from time $t=5$ to $t=6$). The \textit{target} instance at the top of the buffer (position 0) is anonymized by aggregating the values of its attributes with the other instances of the cluster, highlighted with a gray background. Afterwards, it is flushed out of the buffer and a new instance is received.}
+	\caption[Streaming KNN-based microaggregation.]{$k$-Nearest Neighbours based microaggregation schematic of a whole processing step (from time $t=5$ to $t=6$). The \textit{target} instance at the top of the buffer (position 0) is anonymized by aggregating the values of its attributes with the other instances of the cluster, highlighted with a gray background. Afterwards, it is flushed out of the buffer and a new instance is received.}
 	\label{fig:microaggregation-schematic-1}
 \end{figure}
 
@@ -106,7 +106,7 @@ The overall cost of the procedure, when implemented with a priority queue, depen
 
 After a cluster has been obtained from the previous partition step, the instances of the cluster are aggregated, this is, the values of their attributes are imputed with the values of the \textit{centroid} of the cluster. For each attribute, the arithmetic mean (in the case that the attribute is numeric) or the mode (if the attribute is nominal) are calculated over the instances of the cluster. We do not provide any figure or algorithm concerning this step, due its simplicity.
 
-The computational cost of the aggregation step is directly related to the size $k$ of the clusters and can be approximated to $\Theta(2 \cdot m \cdot k)$, where $m$ is the number of attributes (a first traversal to compute the averages and a second one to impute the values). However, given the high complexity of the partition algorithm ($O(n \cdot b \cdot \mathrm{log}(k))$) and provided that $m \ll n$ and $k \ll b, n$, the overall cost of this microaggregation implementation is dominated by the cost of the clustering step.
+The computational cost of the aggregation step is directly related to the size $k$ of the clusters and can be approximated to $\Theta(n \cdot 2 \cdot m \cdot k)$, where $n$ is the number of instances processed and $m$ is the number of attributes. This is: for each of the $m$ attributes, a first traversal over the $k$ instances in the cluster is done to compute the averages and a second one to impute the values of the centroid found. If we add together both steps, we found the total cost of the algorithm: $O(n \cdot (b \cdot \mathrm{log}(k) + 2 \cdot m \cdot k))$. However, given that $m \ll n$ and $k \ll b, n$, the overall cost of this microaggregation implementation is actually dominated by the cost of the clustering step: $O(n \cdot b \cdot \mathrm{log}(k))$.
 
 \subsection{Summary}
 \label{Implementation:Microaggregation:Summary}
@@ -115,8 +115,8 @@ The \texttt{MicroAggregationFilter} implements a microaggregation algorithm base
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=.8\textwidth]{figures/microaggregation-schematic-2.pdf}
-	\caption{KNN-based microaggregation ($k = 3$, $b = 16$). Firstly, the target instance (black) is not anonymized (a). Distances to the remaining non-anonymized instances are calculated (b) and a cluster is formed with the $k-1$ nearest ones (c). After aggregating the records in the cluster, the target instance is streamed out, a new instance (grey) is received and a new target is selected (d).}
+	\includegraphics[width=.9\textwidth]{figures/microaggregation-schematic-2.pdf}
+	\caption[KNN microaggregation, step by step.]{KNN-based microaggregation ($k = 3$, $b = 16$). Firstly, the target instance (black) is not anonymized (a). Distances to the remaining non-anonymized instances are calculated (b) and a cluster is formed with the $k-1$ nearest ones (c). After aggregating the records in the cluster, the target instance is streamed out, a new instance (grey) is received and a new target is selected (d).}
 	\label{fig:microaggregation-schematic-2}
 \end{figure}
 

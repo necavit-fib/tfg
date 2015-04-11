@@ -140,6 +140,8 @@
 \usepackage{booktabs}
 \usepackage{rotating}
 \usepackage{listings}
+\usepackage[algochapter,ruled,vlined]{algorithm2e}
+\usepackage{etoolbox}
 \usepackage{lstpatch}
 \lstset{captionpos=b,
         frame=tb,
@@ -385,6 +387,30 @@
       \@mkboth{
           \MakeUppercase\listtablename}{\MakeUppercase\listtablename}}
     \@starttoc{lot}
+    \if@restonecol\twocolumn\fi
+    \cleardoublepage
+}\end{spacing}
+}
+\patchcmd{\@chapter}% <cmd>
+  {\chaptermark{#1}}% <search>
+  {\chaptermark{#1}%
+   \addtocontents{loa}{\protect\addvspace{10\p@}}}% replace
+  {}{}% <success><failure>
+\newcommand{\listalgoname}{List of Algorithms}
+\renewcommand\listofalgorithms{
+\btypeout{List of Algorithms}
+\addtotoc{List of Algorithms}
+\begin{spacing}{1}{
+    \setlength{\parskip}{1pt}
+    \if@twocolumn
+      \@restonecoltrue\onecolumn
+    \else
+      \@restonecolfalse
+    \fi
+    \chapter*{\listalgoname
+      \@mkboth{
+          \MakeUppercase\listalgoname}{\MakeUppercase\listalgoname}}
+    \@starttoc{loa}
     \if@restonecol\twocolumn\fi
     \cleardoublepage
 }\end{spacing}
