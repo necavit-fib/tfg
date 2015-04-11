@@ -20,14 +20,20 @@ We say that a MOA filter implementation of an SDC method using this processing s
 \textbf{Notation:} from now on, when discussing implementaiton details of buffered filters, we will use the following notation and symbols:
 
 \begin{itemize}
-	\item
-	The \textit{original} instances buffer is named $W$ and has length $\vert W \vert = b$~\footnote{The size of the historical buffer is a common parameter to all buffered filters.}. By $w_i$, we denote the $i$-th instance stored in the buffer, being $w_0$ the oldest one and $w_{b-1}$ the most recently added.
-	\item
+\item
+	The \textit{original} instances buffer is named $W$ and has length $\vert W \vert = b$~\footnote{The size of the historical buffer is a common parameter to all buffered filters.} By $w_i$, we denote the $i$-th instance stored in the buffer, being $w_0$ the oldest one and $w_{b-1}$ the most recently added.
+\item
 	The \textit{anonymized} instance buffer is named $W'$ and has the same length than the previous buffer: $\vert W' \vert = b$. The $i$-th instance of the buffer is denoted by $w_i'$.
-	\item
+\item
 	For convenience, $A$ denotes the set of already anonymized instances. A generic instance $x$ is said to be anonymized if $x \in A$.
-	\item
-	The instance to be anonymized is called the \textit{target} and is denoted by $\tau$.
+\item
+	The value of the $j$-th attribute of an instance $w_i$ is denoted as $w_{ij}$.
+\item
+	\textit{Named} instances are those that are denoted using greek letters: $\tau, \sigma, \rho$. These instances \textit{must} be named by explicitly denoting which position they are in a buffer; for example: $\tau \leftarrow w_0$.
+\item
+	The value of the $j$-th attribute of a named instance is denoted as $\tau_j$, for example. Notice that, since a named instance is already well defined in terms of its position in the buffer, a single subscript index is needed to reference an attribute.
+\item
+	The instance to be anonymized is called the \textit{target} and is always referred to by a the named instance $\tau$.
 \end{itemize}
 
 \procref{al:buffered-procedure} shows the common implementation of the \texttt{nextAnonymizedInstancePair()} abstract method (defined in the \texttt{AnonymizationFilter} interface) for any buffered filter: the buffer is filled with instances of the input stream $S$ and, if the target instance ($\tau = w_0$) has not already been processed, its anonymization is requested via the \texttt{processNextInstance()} method. After this procedure has been called, the instance pair $\langle x, x' \rangle$ is built, the target instance is removed from all necessary buffers and the tuple is returned.
@@ -71,31 +77,31 @@ Our proposal is to use a $k$-Nearest Neighbours (KNN) algorithm to \textit{conti
 
 The idea of this partition procedure, formally explained in~\alref{al:KNN-partition}, is to calculate, for all instances not yet anonymized, the distance to the target ($\tau$), keeping track of the $k-1$ nearest ones. If an instance is closer than the current furthest, the latter is removed from the cluster and the former is added. At the end of the buffer traversal, together with $\tau$, the instances that have been kept will form the next cluster of the stream partition. The distance metric used is the same than that used by the default disclosure risk estimator (see~\sref{Implementation:Estimators:RecordLinker} and~\procref{al:distance}).
 
-The KNN algorithm uses a \textit{priority queue}\footnote{A \textit{max-heap} is used to keep the greatest element on top of the queue.} to hold the $k-1$ nearest neighbours to the target, $\tau$. The queue works over \textit{distance-index} pairs $\langle d, i\rangle$, but is actually indexed by $d$, holding the greatest value on the top of the queue. This way, it is very cheap (constant time) to know whether a given instance $x$ is closer than the current furthest instance from $\tau$. Insertions are also cheap, with an upper bound cost of $O(\mathrm{log}(k))$.
+The KNN algorithm uses a \textit{priority queue}\footnote{A \textit{max-heap} is used to keep the greatest element on top of the queue.} to hold the $k-1$ nearest neighbours to the target, $\tau$. The queue works over \textit{distance-instance} pairs $\langle d, i\rangle$, but is actually indexed by $d$, holding the greatest value on the top of the queue. This way, it is very cheap (constant time) to know whether a given instance $x$ is closer than the current furthest instance from $\tau$. Insertions are also cheap, with an upper bound cost of $O(\mathrm{log}(k))$.
 
 The overall cost of the procedure, when implemented with a priority queue, depends on the amount of instances $n$ being processed, the size $b$ of the sliding window and the size $k$ of the clusters and its upper bound is $O(n \cdot b \cdot \mathrm{log}(k))$.
 
 \begin{algorithm}
 \KwData{$W', A$}
-\KwResult{a \textit{cluster} $\mathcal{C}$ of $k$ instance indexes such that $\mathrm{index}(\tau) \in \mathcal{C}$}
+\KwResult{a \textit{cluster} $\mathcal{C}$ of $k$ instances}
 \Begin{
 	$\tau \leftarrow w_0'$\;
 	$\mathcal{C} \leftarrow \emptyset \cup \tau$\;
-	$Q \leftarrow$ PriorityQueue$\langle$DistanceIndexPair$\rangle$()\;
+	$Q \leftarrow$ PriorityQueue$\langle$DistanceInstancePair$\rangle$()\;
 	\For{$ x \in W', x \notin A $}{
 		$d \leftarrow \mathrm{dist}(x,\tau)$\;
-		$p \leftarrow$ DistanceIndexPair($d$, index($x$))\;
+		$p \leftarrow$ DistanceInstancePair($d$, $x$)\;
 		\eIf{$\vert Q \vert < k$}{
 			$Q \leftarrow Q \cup p$\;
 		}{
-			\If{$d < Q$.peek()}{
+			\If{$p < Q$.peek().distance()}{
 				$Q.poll()$\;
 				$Q \leftarrow Q \cup p$\;
 			}
 		}
 	}
-	\For{$p \in Q$}{
-		$\mathcal{C} \leftarrow \mathcal{C} \cup p.index()$\;
+	\For{$q \in Q$}{
+		$\mathcal{C} \leftarrow \mathcal{C} \cup q.instance()$\;
 	}
 	\KwRet $\mathcal{C}$\;
 }
