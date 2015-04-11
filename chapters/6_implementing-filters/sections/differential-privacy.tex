@@ -1,6 +1,20 @@
 \section{\texttt{DifferentialPrivacyFilter}}
 \label{Implementation:DifferentialPrivacy}
 
+The concept of \textit{differential privacy} is introduced in~\sref{Theory:SDC:Guarantees:DifferentialPrivacy} and on~\sref{Theory:SDCMethods:LaplaceMechanism} a data release \textit{mechanism} that achieves this privacy guarantee is described: the Laplace mechanism. The drawback of differential privacy is that its definition relies on an interactive \textit{query-response} environment, which is definitely not the one we encounter in stream data mining. However, we can find in the literature some efforts to bring differential privacy to non-interactive settings, such as in~\citet{Leoni:NonInteractiveDiffPriv} and~\citet{Domingo:EnhancingDiffPrivMicroaggregation}. The \texttt{DifferentialPrivacyFilter} is devised to provide a differential private release method is such a setting, namely, in the context of MOA privacy filters.
+
+Following the idea presented in~\citet{Domingo:EnhancingDiffPrivMicroaggregation}, we have built an SDC method which combines microaggregation with the Laplace mechanism. We recall now a simplified definition of this mechanism:
+
+\begin{definition}~(Laplace mechanisnm)
+Given a dataset $X$ and a function $f : X \rightarrow \mathbb{R}^w$, with $w \in \mathbb{N}^+$, an $\varepsilon$-differential privacy mechanism $\mathcal{M}$ for releasing $f$ is to publish
+\begin{equation*}
+\mathcal{M}(D) = f(X) + L
+\end{equation*}
+where $L$ is a vector of random variables each drawn from a Laplace distribution.
+\end{definition}
+
+Let $I_r(X)$ be the function that returns the attribute values corresponding to the $r$-th record (instance) of a stream $X$. It is clear that $I_r$, formally defined as $I : (X,r) \rightarrow \mathbb{R}^w$, with $w \in \mathbb{N}^+$, $X$ a \textit{dataset} and $r \in \mathbb{N}$, is a good candidate to be fed into the Laplace mechanism to obtain an $\varepsilon$-differential private data release method. If the stream $X$, upon which $I_r$ is defined, is a $k$-microaggregated stream, we will be actually \textit{composing} microaggregation with a noise addition method and, finally, obtaining the differential privacy filter we wanted to design.
+
 \subsection{Design}
 \label{Implementation:DifferentialPrivacy:Design}
 
