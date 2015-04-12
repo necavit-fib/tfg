@@ -214,10 +214,10 @@ inputStream</panel_attributes>
     <coordinates>
       <x>585</x>
       <y>522</y>
-      <w>162</w>
+      <w>189</w>
       <h>27</h>
     </coordinates>
-    <panel_attributes>*MADPFilter*</panel_attributes>
+    <panel_attributes>*DifferentialPrivacyFilter*</panel_attributes>
     <additional_attributes/>
   </element>
   <element>

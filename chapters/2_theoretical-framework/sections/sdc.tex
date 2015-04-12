@@ -93,7 +93,7 @@ Many different methods have been developed to help prevent information disclosur
 
 First described in 2002, by Latanya Sweeney, a release of data is said to have the \textit{$k$-anonymity} property if the information for each person contained in the release cannot be distinguished from at least $k-1$ individuals whose information also appears in the release~\citep{Sweeney:kAnonymity}. A more formal definition uses the previously reviewed concept of \textit{quasi-identifiers} (see~\sref{Theory:SDC:DisclosureTypes}).
 
-\begin{definition}~($k$-Anonymity)
+\begin{definition}~($k$-Anonymity)\\
 A dataset is said to satisfy $k$-anonymity for an integer $k > 1$ if, for each combination of values of quasi-identifiers, at least $k$ records exist in the dataset sharing that combination.~\citep{Domingo:EnhancingDiffPrivMicroaggregation}
 \end{definition}
 
@@ -112,7 +112,7 @@ Further on, the \textit{$t$-closeness} property definition adds attribute-based 
 
 Described in~\citet{Dwork:DifferentialPrivacy}, \textit{differential privacy} is a condition \textit{on the release mechanism} (not the dataset) that guarantees a strong privacy preservation level for some particular data uses contexts. Differential privacy is introduced in an \textit{interactive} setting, i.e., in a query-response data retrieval environment, and offers probabilistic guarantees that the contribution of any single individual to thenquery response is limited.
 
-\begin{definition}~($\varepsilon$-Differential privacy)
+\begin{definition}~($\varepsilon$-Differential privacy)\\
 A randomized mechanism\footnote{By \textit{mechanism}, we refer to any kind of function or system used to query for data.} $\mathcal{M}$ gives $\varepsilon$-differential privacy if, for all datasets $X_1$, $X_2$ such that one can be obtained from the other by modifying a \textit{single} record, and all $S \subset Range(\mathcal{M})$, it holds
 \begin{equation}
 P(\mathcal{M}(X_1) \in S) \leq \mathrm{exp}(\varepsilon) \times P(\mathcal{M}(X_2) \in S)

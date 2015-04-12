@@ -111,11 +111,11 @@ First, values of a variable $j$ are ranked in ascending order, this is, they are
 
 We recall now the context of differential privacy to discuss a relatively extended method that is designed to achieve this privacy preserving guarantee. However, this technique is restricted to a particular family of data release functions. More precisely, it can only be applied to functions that provide a \textit{numerical} answer, like counting queries, for example. To understand this method, called \textit{Laplace mechanism}, we must review first the concept of \textit{global sensitivity} of a function.
 
-\begin{definition}~(Neighbour datasets)
+\begin{definition}~(Neighbour datasets)\\
 Given two datasets from a universe of datasets, $D_1, D_2 \in \mathcal{D}$, we call them \textit{neighbours} if they differ in just one record, which we indicate using the notation $|D_1 \Delta D_2| = 1$.
 \end{definition}
 
-\begin{definition}~(Global Sensitivity of a function)
+\begin{definition}~(Global Sensitivity of a function)\\
 We define the global sensitivity of a numerical function $f : \mathcal{D} \rightarrow \mathbb{R}^w$, with $w \in \mathbb{N}^+$, over the universe of datasets $\mathcal{D}$, as
 \begin{equation}
 \Delta(f) = \max_{\substack{D_1, D_2 \in \mathcal{D} \\ |D_1 \Delta D_2| = 1}} \lVert f(D_1) - f(D_2) \rVert_{1}
@@ -124,7 +124,7 @@ We define the global sensitivity of a numerical function $f : \mathcal{D} \right
 
 As we will now see, the Laplace mechanism is just a noise addition masking method, where the sensitivity of the release function $f$ drives the amount of noise being added to the response of $f$: the higher the sensitivity of the function, the higher the amount of noise added. If $f$ is applied to a dataset $D_1$ and then to a neighboring dataset $D_2$, if $f$ changes a lot, it means that we will have to add more noise to probably obtain the same output.
 
-\begin{definition}~(Laplace mechanism)
+\begin{definition}~(Laplace mechanism)\\
 Given a database $D \in \mathcal{D}$ and a function $f : \mathcal{D} \rightarrow \mathbb{R}^w$, with $w \in \mathbb{N}^+$ and global sensitivity $\Delta$, an $\varepsilon$-differential privacy mechanism $\mathcal{M}$ for releasing $f$ is to publish
 \begin{equation}
 \mathcal{M}(D) = f(D) + L
