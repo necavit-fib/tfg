@@ -80,7 +80,7 @@ where $M$ is an insensitive $k$-microaggregation function and $L$ is a vector of
 b_j = \frac{\Delta_j\big(I_r(X)\big)}{\varepsilon}
 \end{equation*}
 
-A general and high level description of the complete mechanism, adapted to a streaming environment, is given in~\alref{al:laplace-mechanism}. Notice that a single instance is processed in the algorithm pseudo-code: the privacy filter executes the mechanism for each instance in the input data stream. All the involved classes and modules of the actual implementation can be seen in~\fref{fig:class-differential-privacy-filter}.
+A general and high level description of the complete mechanism, adapted to a streaming environment, is given in~\alref{al:laplace-mechanism}. Notice that a single instance is processed in the algorithm pseudo-code: the privacy filter executes the mechanism for each instance in the input data stream. All the involved classes and modules of the actual implementation can be seen in~\fref{fig:class-differential-privacy-filter}. The general cost of this method can be approximated to the same as the \texttt{MicroAggregtionFilter}: $O(n \cdot b \cdot \mathrm{log}(k))$.
 
 \begin{algorithm}[h]
 \KwData{an instance $x$ from a stream, an insensitive microaggregation function $M$ and a Laplace noise adder $\mathcal{L}$}
@@ -148,3 +148,21 @@ where $U$ is another random variable drawn from a uniform distribution constrain
 }
 \caption{Laplace Noise Adder\label{al:laplace-noise-adder}}
 \end{algorithm}
+
+\subsection{Summary}
+\label{Implementation:DifferentialPrivacy:Summary}
+
+The \texttt{DifferentialPrivacyFilter} class implements a microaggregation-based Laplace mechanism to achieve $\varepsilon$-differential privacy sanitization of released data.~\tref{table:differential-privacy-summary} summarizes the main properties of this SDC method.
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{@{}ll@{}}
+	\toprule
+	\multicolumn{2}{l}{\textbf{DifferentialPrivacyFilter}}                             \\ \midrule
+	\textbf{Parameters}   & $k$ (cluster size), $\varepsilon$ (differential privacy), $b$ (buffer size) \\
+	\textbf{Type of data} & Numerical data only \\
+	\textbf{Cost}         & $O(n \cdot b \cdot \mathrm{log}(k))$  \\ \bottomrule
+	\end{tabular}
+	\caption{\texttt{DifferentialPrivacyFilter} summary.}
+	\label{table:differential-privacy-summary}
+\end{table}

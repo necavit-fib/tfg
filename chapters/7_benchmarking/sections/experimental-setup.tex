@@ -1,15 +1,83 @@
 \section{Experimental setup}
 \label{Benchmarking:Experimental}
 
-\subsection{Hardware}
-\label{Benchmarking:Experimental:Hardware}
+A simple experimental setup has been used to assess the performance of the MOA privacy filters in terms of \textit{disclosure risk} and \textit{information loss}. To do so, a MOA \textit{task}\footnote{Within the MOA framework, tasks define a procedure to run as the main program, like a classifier or regression learning task.} was specifically designed to retrieve the results of the evaluation measures of the filters.
 
-\subsection{Software}
-\label{Benchmarking:Experimental:Software}
+\subsection{MOA generators}
+\label{Benchmarking:Experimental:MOAGenerators}
+
+In order to test the filters, streams of synthetically generated data have been used, rather than actual datasets, mainly because, this way, we avoid the complex and time consuming preprocessing of real datasets.
+
+The MOA framework offers a rich set of stream data generators, of which we chose the \texttt{RandomRBFGenerator} and the \texttt{WaveformGenerator}. Both streams consist of numerical variables only. Even though most of the implemented filters are capable of dealing with heterogeneous data, some previous tests had shown that the information loss evaluation, based on the $SSE$ estimation, pondered too much categorical attributes differences, thus getting disturbed IL measurements.
+
+The \texttt{RandomRBFGenerator} outputs a stream of 10 attributes and 1 class variable, drawing values for those attributes from radial basis functions (RBFs). The class variable is indeed a categorical one, indicating to which RBF an instance belongs, this is, the intended machine learning task of this generator is \textit{classification}.
+
+The \texttt{WaveformGenerator} generates values by combining two or three base wave functions, which form a numerical stream of 21 attributes and 1 class variable. The machine learning task intended for this generator is, again, \textit{classification}.
 
 \subsection{Experimental design}
 \label{Benchmarking:Experimental:Design}
 
-\subsubsection{MOA generators}
+The experiments undertaken during the benchmarking stage of the project consist in generating streams of synthetic data and pipe those streams through each of the privacy filters, for each of the parameters permutations that we decided. A summary of paramaters values used in those experiments is shown in the following listings.
 
-\subsubsection{Python scripts}
+\subsubsection*{\texttt{NoiseAdditionFilter} parameters:}
+\begin{itemize}
+	\item $a \in \{0.1, 0.25, 0.5, 0.75, 1.0\}$
+	\item $c = 0.0$ (to preserve data utility, no class attribute was distorted)
+\end{itemize}
+
+\subsubsection*{\texttt{MicroAggregationFilter} parameters:}
+\begin{itemize}
+	\item $b \in \{100, 250, 500, 1000\}$
+	\item $k \in \{3, 5, 10, 15, 20, 25, 50, 100\}$
+\end{itemize}
+
+\subsubsection*{\texttt{RankSwappingFilter} parameters:}
+\begin{itemize}
+	\item $b \in \{100, 250, 500, 1000\}$
+	\item $p \in \{10, 25, 50, 75, 80\}$ (to preserve data utility, no class attribute was distorted)
+\end{itemize}
+
+\subsubsection*{\texttt{DifferentialPrivacy} parameters:}
+\begin{itemize}
+	\item $b \in \{100, 250, 500, 1000\}$
+	\item $k \in \{3, 5, 10, 15, 20, 25, 50, 100\}$
+	\item $\varepsilon \in \{0.01, 0.1, 1, 10, 100\}$
+\end{itemize}
+
+The optimal situation would have been to execute each filter configuration (each parameters permutation) a number of times, in order to statistically validate the results. However, due to the lack of time and resources available, a single execution of each filter was performed during the benchmark phase.
+
+\subsection{Hardware}
+\label{Benchmarking:Experimental:Hardware}
+
+The executions of the filters were executed in the following hardware environment\footnote{Only the relevant specifications to the execution of the filters are included.}:
+
+\begin{itemize}
+\item \textbf{Computer model:} Asus k53-SV
+\item \textbf{CPU:}
+	\begin{itemize}
+		\item Model: Intel(R) Core(TM) i5-2430M
+		\item Architecture: 64 bit
+		\item Frequency: 2.40GHz
+		\item Number of cores: 2, with hyper-threading (4 virtual threads available)
+		\item L1 (data) Cache: 32KB
+		\item L1 (instructions) Cache: 32KB
+		\item L2 Cache: 256KB
+		\item L3 Shared Cache: 3072KB
+	\end{itemize}
+\item \textbf{Memory:}
+	\begin{itemize}
+		\item Capacity: 8GB
+		\item Frequency: 1333MHz
+	\end{itemize}
+\end{itemize}
+
+\subsection{Software}
+\label{Benchmarking:Experimental:Software}
+
+The following software was involved in the execution of the privacy filters benchmarks:
+
+\begin{itemize}
+\item \textbf{Operating System:} Ubuntu 12.04 LTS with the Linux kernel 3.2.0-80 version
+\item \textbf{Java:} Java 1.7.0\_75 (OpenJDK Runtime Environment, version IcedTea 2.5.4)
+\item \textbf{Python:} Python 2.7 (to execute the scripts running the actual MOA tasks)
+\end{itemize}

@@ -1,11 +1,168 @@
 \section{Results}
 \label{Benchmarking:Results}
 
+We provide now the results of the execution of the privacy filters, as was specified in the previous section. For each filter, we present summary tables with the disclosure risk and information loss estimates for each parameterization, as well as plots showing the evolution of both measurements against the number of instances processed.
+
 \subsection{Noise addition}
 \label{Benchmarking:Results:Noise}
 
+\begin{minipage}[t]{0.5\textwidth}
+	\begin{flushleft}
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{@{}rrrr@{}}
+			\toprule
+			$a$ & $c$ & \multicolumn{1}{c}{DR} & \multicolumn{1}{c}{IL} \\ \midrule
+			0.1 & 0.0 & 0.956	& 1123.97 \\
+			0.25 & 0.0 & 0.889 & 7024.83 \\
+			0.5 & 0.0 & 0.774	& 28099.33 \\
+			0.75 & 0.0 & 0.596 & 63223.50 \\
+			1.0 & 0.0 & 0.430 & 112397.34 \\ \bottomrule
+		\end{tabular}
+		\caption[Noise addition DR \& IL estimations (RandomRBF).]{Noise addition IL \& DR estimations for all considered parameterizations with the \textit{RandomRBF} generator.}
+		\label{table:results-rbf-noise-addition}
+	\end{table}
+	\end{flushleft}
+\end{minipage}
+\begin{minipage}[t]{0.5\textwidth}
+	\begin{flushright}
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{@{}rrrr@{}}
+			\toprule
+			$a$ & $c$ & \multicolumn{1}{c}{DR} & \multicolumn{1}{c}{IL} \\ \midrule
+			0.1  & 0.0 & 1.000 & 50741.41   \\
+			0.25 & 0.0 & 1.000 & 317133.83  \\
+			0.5  & 0.0 & 0.996 & 1268535.34 \\
+			0.75 & 0.0 & 0.919 & 2854204.53 \\
+			1.0  & 0.0 & 0.742 & 5074141.39 \\ \bottomrule
+		\end{tabular}
+		\caption[Noise addition DR \& IL estimations (Waveform).]{Noise addition IL \& DR estimations for all considered parameterizations with the \textit{Waveform} generator.}
+		\label{table:results-wave-noise-addition}
+	\end{table}
+	\end{flushright}
+\end{minipage}
+
 \subsection{Microaggregation}
 \label{Benchmarking:Results:MicroAgg}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{@{}cc@{}}
+		\begin{tabular}{@{}rrrr@{}}
+			\toprule
+			$b$ & $k$ & \multicolumn{1}{c}{DR} & \multicolumn{1}{c}{IL} \\ \midrule
+			100  & 3   & 0.232 & 74917.30  \\
+			100  & 5   & 0.144 & 89953.68  \\
+			100  & 10  & 0.089 & 101193.72 \\
+			100  & 15  & 0.069 & 104952.79 \\
+			100  & 20  & 0.061 & 106800.51 \\
+			100  & 25  & 0.055 & 107937.42 \\
+			100  & 50  & 0.041 & 110179.72 \\
+			100  & 100 & 0.030 & 111313.78 \\ \bottomrule
+		\end{tabular}
+		&
+		\begin{tabular}{@{}rrrr@{}}
+			\toprule
+			$b$ & $k$ & \multicolumn{1}{c}{DR} & \multicolumn{1}{c}{IL} \\ \midrule
+			250  & 3   & 0.153 & 74917.30  \\
+			250  & 5   & 0.089 & 89953.68  \\
+			250  & 10  & 0.051 & 101193.72 \\
+			250  & 15  & 0.039 & 104952.79 \\
+			250  & 20  & 0.034 & 106800.51 \\
+			250  & 25  & 0.031 & 107937.42 \\
+			250  & 50  & 0.025 & 110179.72 \\
+			250  & 100 & 0.018 & 111313.78 \\ \bottomrule
+		\end{tabular}
+		\\ & \\
+		\begin{tabular}{@{}rrrr@{}}
+			\toprule
+			$b$ & $k$ & \multicolumn{1}{c}{DR} & \multicolumn{1}{c}{IL} \\ \midrule
+			500  & 3   & 0.109 & 74917.30  \\
+			500  & 5   & 0.060 & 89953.68  \\
+			500  & 10  & 0.033 & 101193.72 \\
+			500  & 15  & 0.025 & 104952.79 \\
+			500  & 20  & 0.021 & 106800.51 \\
+			500  & 25  & 0.019 & 107937.42 \\
+			500  & 50  & 0.015 & 110179.72 \\
+			500  & 100 & 0.012 & 111313.78 \\ \bottomrule
+		\end{tabular}
+		&
+		\begin{tabular}{@{}rrrr@{}}
+			\toprule
+			$b$ & $k$ & \multicolumn{1}{c}{DR} & \multicolumn{1}{c}{IL} \\ \midrule
+			1000 & 3   & 0.078 & 74917.30  \\
+			1000 & 5   & 0.040 & 89953.68  \\
+			1000 & 10  & 0.021 & 101193.72 \\
+			1000 & 15  & 0.015 & 104952.79 \\
+			1000 & 20  & 0.013 & 106800.51 \\
+			1000 & 25  & 0.011 & 107937.42 \\
+			1000 & 50  & 0.009 & 110179.72 \\
+			1000 & 100 & 0.008 & 111313.78 \\ \bottomrule
+		\end{tabular}
+	\end{tabular}
+	\caption[Microaggregation DR \& IL estimations (RandomRBF).]{Microaggregation IL \& DR estimations for all considered parameterizations with the \textit{RandomRBF} generator.}
+	\label{table:results-rbf-microaggregation}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{@{}cc@{}}
+		\begin{tabular}{@{}rrrr@{}}
+			\toprule
+			$b$ & $k$ & \multicolumn{1}{c}{DR} & \multicolumn{1}{c}{IL} \\ \midrule
+			100  & 3   & 0.241 & 3375656.78 \\
+			100  & 5   & 0.135 & 4057649.13 \\
+			100  & 10  & 0.076 & 4566550.54 \\
+			100  & 15  & 0.061 & 4739204.47 \\
+			100  & 20  & 0.054 & 4822716.29 \\
+			100  & 25  & 0.049 & 4872587.52 \\
+			100  & 50  & 0.038 & 4976718.32 \\
+			100  & 100 & 0.029 & 5027574.64 \\ \bottomrule
+		\end{tabular}
+		&
+		\begin{tabular}{@{}rrrr@{}}
+			\toprule
+			$b$ & $k$ & \multicolumn{1}{c}{DR} & \multicolumn{1}{c}{IL} \\ \midrule
+			250  & 3   & 0.186 & 3375656.78 \\
+			250  & 5   & 0.092 & 4057649.13 \\
+			250  & 10  & 0.045 & 4566550.54 \\
+			250  & 15  & 0.035 & 4739204.47 \\
+			250  & 20  & 0.030 & 4822716.29 \\
+			250  & 25  & 0.027 & 4872587.52 \\
+			250  & 50  & 0.022 & 4976718.32 \\
+			250  & 100 & 0.017 & 5027574.64 \\ \bottomrule
+		\end{tabular}
+		\\ & \\
+		\begin{tabular}{@{}rrrr@{}}
+			\toprule
+			$b$ & $k$ & \multicolumn{1}{c}{DR} & \multicolumn{1}{c}{IL} \\ \midrule
+			500  & 3   & 0.152 & 3375656.78 \\
+			500  & 5   & 0.068 & 4057649.13 \\
+			500  & 10  & 0.030 & 4566550.54 \\
+			500  & 15  & 0.022 & 4739204.47 \\
+			500  & 20  & 0.019 & 4822716.29 \\
+			500  & 25  & 0.017 & 4872587.52 \\
+			500  & 50  & 0.013 & 4976718.32 \\
+			500  & 100 & 0.012 & 5027574.64 \\ \bottomrule
+		\end{tabular}
+		&
+		\begin{tabular}{@{}rrrr@{}}
+			\toprule
+			$b$ & $k$ & \multicolumn{1}{c}{DR} & \multicolumn{1}{c}{IL} \\ \midrule
+			1000 & 3   & 0.125 & 3375656.78 \\
+			1000 & 5   & 0.050 & 4057649.13 \\
+			1000 & 10  & 0.020 & 4566550.54 \\
+			1000 & 15  & 0.014 & 4739204.47 \\
+			1000 & 20  & 0.011 & 4822716.29 \\
+			1000 & 25  & 0.010 & 4872587.52 \\
+			1000 & 50  & 0.007 & 4976718.32 \\
+			1000 & 100 & 0.007 & 5027574.64 \\ \bottomrule
+		\end{tabular}
+	\end{tabular}
+	\caption[Microaggregation DR \& IL estimations (RandomRBF).]{Microaggregation IL \& DR estimations for all considered parameterizations with the \textit{Waveform} generator.}
+	\label{table:results-wave-microaggregation}
+\end{table}
 
 \subsection{Rank swapping}
 \label{Benchmarking:Results:RankSwap}
