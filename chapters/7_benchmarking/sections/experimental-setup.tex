@@ -17,32 +17,33 @@ The \texttt{WaveformGenerator} generates values by combining two or three base w
 \subsection{Experimental design}
 \label{Benchmarking:Experimental:Design}
 
-The experiments undertaken during the benchmarking stage of the project consist in generating streams of synthetic data and pipe those streams through each of the privacy filters, for each of the parameters permutations that we decided. A summary of paramaters values used in those experiments is shown in the following listings.
+The experiments undertaken during the benchmarking stage of the project consist in generating streams of synthetic data and pipe those streams through each of the privacy filters, for each of the parameters permutations that we decided, taking 100000 instances from the generators. A summary of paramaters values used in those experiments is shown in the following listings.
 
-\subsubsection*{\texttt{NoiseAdditionFilter} parameters:}
-\begin{itemize}
-	\item $a \in \{0.1, 0.25, 0.5, 0.75, 1.0\}$
-	\item $c = 0.0$ (to preserve data utility, no class attribute was distorted)
-\end{itemize}
-
-\subsubsection*{\texttt{MicroAggregationFilter} parameters:}
-\begin{itemize}
-	\item $b \in \{100, 250, 500, 1000\}$
-	\item $k \in \{3, 5, 10, 15, 20, 25, 50, 100\}$
-\end{itemize}
-
-\subsubsection*{\texttt{RankSwappingFilter} parameters:}
-\begin{itemize}
-	\item $b \in \{100, 250, 500, 1000\}$
-	\item $p \in \{10, 25, 50, 75, 80\}$ (to preserve data utility, no class attribute was distorted)
-\end{itemize}
-
-\subsubsection*{\texttt{DifferentialPrivacy} parameters:}
-\begin{itemize}
-	\item $b \in \{100, 250, 500, 1000\}$
-	\item $k \in \{3, 5, 10, 15, 20, 25, 50, 100\}$
-	\item $\varepsilon \in \{0.01, 0.1, 1, 10, 100\}$
-\end{itemize}
+\begin{table}[H]
+	\centering
+	\begin{tabular}{@{}llll@{}}
+		\toprule
+		& \multicolumn{3}{c}{\textbf{Parameters}} \\ \cmidrule{2-4}
+		\textbf{Privacy filter} & \small\textbf{Name} & \small\textbf{Range} & \small\textbf{Selected values} \\ \midrule
+		
+		\footnotesize\texttt{NoiseAdditionFilter} & $a$ & $[0,1] \in \mathbb{R}$ & 0.1, 0.25, 0.5, 0.75, 1.0 \\
+		& $c$ & $[0,1] \in \mathbb{R}$ & 0.0 \\
+		&&&\\
+		\footnotesize\texttt{MicroAggregationFilter} & $b$ & $\mathbb{N}^+$ & 100, 250, 500, 1000 \\
+		& $k$ & $\mathbb{N}^+,~k \leq b$ & 3, 5, 10, 15, 20, 25, 50, 100 \\
+		&&&\\
+		\footnotesize\texttt{RankSwappingFilter} & $b$ & $\mathbb{N}^+$ & 100, 250, 500, 1000 \\
+		& $p$ & $[1,100] \in \mathbb{N}^+$ & 10, 25, 50, 75, 80 \\
+		&&&\\	
+		\footnotesize\texttt{DifferentialPrivacyFilter} & $b$ & $\mathbb{N}^+$ & 100, 250, 500, 1000 \\
+		& $k$ & $\mathbb{N}^+,~k \leq b$ & 3, 5, 10, 15, 20, 25, 50, 100 \\
+		& $\varepsilon$ & $\mathbb{R}^+$ & 0.01, 0.1, 1, 10, 100 \\
+		
+		\bottomrule
+	\end{tabular}
+	\caption[Privacy filters benchmark parameterization.]{Privacy filters benchmark parameterization.}
+	\label{table:filter-params-execution}
+\end{table}
 
 The optimal situation would have been to execute each filter configuration (each parameters permutation) a number of times, in order to statistically validate the results. However, due to the lack of time and resources available, a single execution of each filter was performed during the benchmark phase.
 
@@ -51,25 +52,29 @@ The optimal situation would have been to execute each filter configuration (each
 
 The executions of the filters were executed in the following hardware environment\footnote{Only the relevant specifications to the execution of the filters are included.}:
 
-\begin{itemize}
-\item \textbf{Computer model:} Asus k53-SV
-\item \textbf{CPU:}
-	\begin{itemize}
-		\item Model: Intel(R) Core(TM) i5-2430M
-		\item Architecture: 64 bit
-		\item Frequency: 2.40GHz
-		\item Number of cores: 2, with hyper-threading (4 virtual threads available)
-		\item L1 (data) Cache: 32KB
-		\item L1 (instructions) Cache: 32KB
-		\item L2 Cache: 256KB
-		\item L3 Shared Cache: 3072KB
-	\end{itemize}
-\item \textbf{Memory:}
-	\begin{itemize}
-		\item Capacity: 8GB
-		\item Frequency: 1333MHz
-	\end{itemize}
-\end{itemize}
+\begin{table}[H]
+	\centering
+	\begin{tabular}{@{}lll@{}}
+		\toprule
+		\textbf{Category} & \multicolumn{2}{l}{\textbf{Description}} \\ \midrule
+		
+		\textbf{Computer model} & \multicolumn{2}{l}{Asus k53-SV} \\
+		&&\\
+		\textbf{CPU} & Model & Intel(R) Core(TM) i5-2430M, 64 bit \\
+		             & Frequency & 2.40GHz \\
+		             & Cores & 2 (4 \textit{virtual} threads available) \\
+		             & Cache & 32KB data L1 \\
+		             &       & 32KB instructions L1 \\
+		             &       & 256KB L2 per core \\
+		             &       & 3072KB shared L3 \\
+		&&\\
+		\textbf{Memory} & Capacity & 8GB \\
+		                & Frequency & 1333MHz \\
+		\bottomrule
+	\end{tabular}
+	\caption[Hardware benchamark setting.]{Hardware benchamark setting.}
+	\label{table:execution-hardware}
+\end{table}
 
 \subsection{Software}
 \label{Benchmarking:Experimental:Software}
