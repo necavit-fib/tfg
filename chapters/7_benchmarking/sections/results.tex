@@ -19,7 +19,7 @@ We provide now the results of the execution of the privacy filters, with the con
 			0.75 & 0.0 & 0.596 & 63223.50 \\
 			1.0 & 0.0 & 0.430 & 112397.34 \\ \bottomrule
 		\end{tabular}
-		\caption[Noise addition DR \& IL estimations (RandomRBF).]{Noise addition IL \& DR estimations for all considered parameterizations with the \textit{RandomRBF} generator.}
+		\caption[Noise addition DR \& IL estimations (\texttt{RandomRBFGenerator}).]{Noise addition IL \& DR estimations for all considered parameterizations with the \texttt{RandomRBFGenerator}.}
 		\label{table:results-rbf-noise-addition}
 	\end{table}
 	\end{flushleft}
@@ -37,17 +37,139 @@ We provide now the results of the execution of the privacy filters, with the con
 			0.75 & 0.0 & 0.919 & 2854204.53 \\
 			1.0  & 0.0 & 0.742 & 5074141.39 \\ \bottomrule
 		\end{tabular}
-		\caption[Noise addition DR \& IL estimations (Waveform).]{Noise addition IL \& DR estimations for all considered parameterizations with the \textit{Waveform} generator.}
+		\caption[Noise addition DR \& IL estimations (\texttt{WaveformGenerator}).]{Noise addition IL \& DR estimations for all considered parameterizations with the \texttt{WaveformGenerator}.}
 		\label{table:results-wave-noise-addition}
 	\end{table}
 	\end{flushright}
 \end{minipage}
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\linewidth]{figures/dr_na-random.pdf}
+	\caption[Noise addition DR evaluation ($c = 0$).]{\texttt{NoiseAdditionFilter} DR evaluation using the \texttt{RandomRBFGenerator} with fixed parameter $c = 0$.}
+	\label{fig:results-dr-na}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\linewidth]{figures/il-log_na-random.pdf}
+	\caption[Noise addition IL evaluation ($c = 0$), logarithmic scale.]{\texttt{NoiseAdditionFilter} IL evaluation using the \texttt{RandomRBFGenerator} with fixed parameter $c = 0$, on a logarithmic scale.}
+	\label{fig:results-il-log-na}
+\end{figure}
+
 \subsection{Microaggregation}
 \label{Benchmarking:Results:MicroAgg}
 
+\begin{minipage}[t]{0.5\textwidth}
+	\begin{flushleft}
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{@{}rrrr@{}}
+			\toprule
+			$b$ & $k$ & \multicolumn{1}{c}{DR} & \multicolumn{1}{c}{IL} \\ \midrule
+			100  & 3   & 0.232 & 74917.30  \\
+			100  & 5   & 0.144 & 89953.68  \\
+			100  & 10  & 0.089 & 101193.72 \\
+			100  & 15  & 0.069 & 104952.79 \\
+			100  & 20  & 0.061 & 106800.51 \\
+			100  & 25  & 0.055 & 107937.42 \\
+			100  & 50  & 0.041 & 110179.72 \\
+			100  & 100 & 0.030 & 111313.78 \\ \bottomrule
+		\end{tabular}
+		\caption[Microaggregation DR \& IL estimations (\texttt{RandomRBFGenerator}).]{Microaggregation IL \& DR estimations for increasing $k$ (cluster size) and fixed buffer size $b=100$ with the \texttt{RandomRBFGenerator}.}
+		\label{table:results-rbf-microaggregation}
+	\end{table}
+	\end{flushleft}
+\end{minipage}
+\begin{minipage}[t]{0.5\textwidth}
+	\begin{flushright}
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{@{}rrrr@{}}
+			\toprule
+			$b$ & $k$ & \multicolumn{1}{c}{DR} & \multicolumn{1}{c}{IL} \\ \midrule
+			100  & 3   & 0.241 & 3375656.78 \\
+			100  & 5   & 0.135 & 4057649.13 \\
+			100  & 10  & 0.076 & 4566550.54 \\
+			100  & 15  & 0.061 & 4739204.47 \\
+			100  & 20  & 0.054 & 4822716.29 \\
+			100  & 25  & 0.049 & 4872587.52 \\
+			100  & 50  & 0.038 & 4976718.32 \\
+			100  & 100 & 0.029 & 5027574.64 \\ \bottomrule
+		\end{tabular}
+		\caption[Microaggregation DR \& IL estimations (\texttt{WaveformGenerator}).]{Microaggregation IL \& DR estimations for increasing $k$ (cluster size) and fixed buffer size $b=100$ with the \texttt{WaveformGenerator}.}
+		\label{table:results-wave-microaggregation}
+	\end{table}
+	\end{flushright}
+\end{minipage}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\linewidth]{figures/dr_ma-random.pdf}
+	\caption[Microaggregation DR evaluation ($b = 100$).]{\texttt{MicroaggregationFilter} DR evaluation using the \texttt{RandomRBFGenerator} with fixed buffer size $b = 100$, for increasing $k$.}
+	\label{fig:results-dr-ma}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\linewidth]{figures/il-log_na-random.pdf}
+	\caption[Microaggregation IL evaluation ($b = 100$), logarithmic scale.]{\texttt{MicroaggregationFilter} IL evaluation using the \texttt{RandomRBFGenerator} with fixed buffer size $b = 100$, for increasing $k$, on a logarithmic scale.}
+	\label{fig:results-il-log-ma}
+\end{figure}
+
 \subsection{Rank swapping}
 \label{Benchmarking:Results:RankSwap}
+
+\begin{minipage}[t]{0.5\textwidth}
+	\begin{flushleft}
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{@{}rrrr@{}}
+			\toprule
+			$b$ & $p$ & \multicolumn{1}{c}{DR} & \multicolumn{1}{c}{IL} \\ \midrule
+			100  & 10 & 0.838 & 19136.62  \\
+			100  & 25 & 0.469 & 57753.05  \\
+			100  & 50 & 0.070 & 136791.17 \\
+			100  & 75 & 0.036 & 178200.11 \\
+			100  & 80 & 0.037 & 178685.81 \\ \bottomrule
+		\end{tabular}
+		\caption[Rank swapping DR \& IL estimations (\texttt{RandomRBFGenerator}).]{Rank swapping IL \& DR estimations for increasing $p$ (maximum swap range) and fixed buffer size $b=100$ with the \texttt{RandomRBFGenerator}.}
+		\label{table:results-rbf-rankswap}
+	\end{table}
+	\end{flushleft}
+\end{minipage}
+\begin{minipage}[t]{0.5\textwidth}
+	\begin{flushright}
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{@{}rrrr@{}}
+			\toprule
+			$b$ & $p$ & \multicolumn{1}{c}{DR} & \multicolumn{1}{c}{IL} \\ \midrule
+			100  & 10 & 0.997 & 705196.07  \\
+			100  & 25 & 0.776 & 2464673.56 \\
+			100  & 50 & 0.112 & 6195304.18 \\
+			100  & 75 & 0.046 & 8088473.27 \\
+			100  & 80 & 0.045 & 8097619.70 \\ \bottomrule
+		\end{tabular}
+		\caption[Rank swapping DR \& IL estimations (\texttt{WaveformGenerator}).]{Rank swapping IL \& DR estimations for increasing $p$ (maximum swap range) and fixed buffer size $b=100$ with the \texttt{WaveformGenerator}.}
+		\label{table:results-wave-rankswap}
+	\end{table}
+	\end{flushright}
+\end{minipage}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\linewidth]{figures/dr_rs-random.pdf}
+	\caption[Rank swapping DR evaluation ($b = \{100,500\}$).]{\texttt{RankSwappingFilter} DR evaluation using the \texttt{RandomRBFGenerator} with buffer sizes $b = 100$ and $b = 500$, for increasing $p$.}
+	\label{fig:results-dr-rs}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\linewidth]{figures/il-log_rs-random.pdf}
+	\caption[Rank swapping IL evaluation ($b = \{100,500\}$), logarithmic scale.]{\texttt{RankSwappingFilter} IL evaluation using the \texttt{RandomRBFGenerator} with buffer sizes $b = 100$ and $b = 500$, for increasing $p$, on a logarithmic scale.}
+	\label{fig:results-il-log-rs}
+\end{figure}
 
 \subsection{$\varepsilon$-Differential private microaggregation}
 \label{Benchmarking:Results:DiffPriv}
@@ -125,3 +247,31 @@ We provide now the results of the execution of the privacy filters, with the con
 	\caption[Differential privacy DR \& IL estimations.]{Differential privacy DR \& IL estimations for increasing $\varepsilon$ and $k$ values and fixed buffer size ($b = 250$). Results from the execution with the \texttt{RandomRBFGenerator}.}
 	\label{table:results-random-diff-priv}
 \end{table}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\linewidth]{figures/dr_dp-e1-random.pdf}
+	\caption[Differential privacy DR evaluation ($b = 100,~\varepsilon = 1$).]{\texttt{DifferentialPrivacyFilter} DR evaluation using the \texttt{RandomRBFGenerator} with fixed buffer size $b = 100$ and fixed differential privacy scale parameter $\varepsilon = 1$, for increasing $k$.}
+	\label{fig:results-dr-dp-e1}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\linewidth]{figures/dr_dp-k3-random.pdf}
+	\caption[Differential privacy DR evaluation ($b = 100,~k = 3$).]{\texttt{DifferentialPrivacyFilter} DR evaluation using the \texttt{RandomRBFGenerator} with fixed buffer size $b = 100$ and fixed cluster size $k = 3$, for increasing $\varepsilon$ differential privacy scale factor.}
+	\label{fig:results-dr-dp-k3}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\linewidth]{figures/il-log_dp-e1-random.pdf}
+	\caption[Differential privacy IL evaluation ($b = 100,~\varepsilon = 1$).]{\texttt{DifferentialPrivacyFilter} IL evaluation using the \texttt{RandomRBFGenerator} with fixed buffer size $b = 100$ and fixed differential privacy scale parameter $\varepsilon = 1$, for increasing $k$, on a logarithmic scale.}
+	\label{fig:results-il-dp-e1}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\linewidth]{figures/il-log_dp-k3-random.pdf}
+	\caption[Differential privacy IL evaluation ($b = 100,~k = 3$).]{\texttt{DifferentialPrivacyFilter} IL evaluation using the \texttt{RandomRBFGenerator} with fixed buffer size $b = 100$ and fixed cluster size $k = 3$, for increasing $\varepsilon$ differential privacy scale factor, on a logarithmic scale.}
+	\label{fig:results-il-dp-k3}
+\end{figure}
