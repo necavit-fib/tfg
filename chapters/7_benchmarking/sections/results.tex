@@ -6,7 +6,7 @@ We provide now the results of the execution of the privacy filters, with the con
 \subsection{Noise addition}
 \label{Benchmarking:Results:Noise}
 
-As was anticipated, the \texttt{NoiseAdditionFilter} \todo{TODO}
+All the considered parameterizations for the \texttt{NoiseAdditionFilter} are reflected on~\tref{table:results-rbf-noise-addition} and~\tref{table:results-wave-noise-addition}. The evolution of disclosure risk against the number of instances processed is shown in~\fref{fig:results-dr-na} and information loss is shown in~\fref{fig:results-il-log-na}.
 
 \begin{minipage}[t]{0.5\textwidth}
 	\begin{flushleft}
@@ -45,6 +45,10 @@ As was anticipated, the \texttt{NoiseAdditionFilter} \todo{TODO}
 	\end{flushright}
 \end{minipage}
 
+As was anticipated in the theoretical introduction chapter, the \texttt{NoiseAdditionFilter} is not able to protect data as much as other methods do. The results of its application on the \texttt{RandomRBFGenerator} data prove to be much better than on the \texttt{WaveformGenerator}, on which has almost no effect at all. Even the high amount of noise introduced, it is not really protecting data against disclosure --- although the $a$ control parameter of the filter is set to its maximum value ($a = 1$), the disclosure risk is quite high.
+
+The effect of the noise scaling factor controlled by the $a$ parameter can cleary be seen on~\fref{fig:results-il-log-na}: the higher the value of the parameter, the higher the information loss. Another important thing to notice is that the amount of noise added for each instance remains constant, this is, the increment in the total information loss measure grows linearly.
+
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.9\linewidth]{figures/dr_na-random.pdf}
@@ -59,8 +63,12 @@ As was anticipated, the \texttt{NoiseAdditionFilter} \todo{TODO}
 	\label{fig:results-il-log-na}
 \end{figure}
 
+\clearpage
+
 \subsection{Microaggregation}
 \label{Benchmarking:Results:MicroAgg}
+
+Tables \ref{table:results-rbf-microaggregation} and \ref{table:results-wave-microaggregation} show the final values for both information loss and disclosure risk for increasing values of the cluster size of the partition step of the microaggregation algorithm (the $k$ parameter) and a fixed historical buffer size of $b = 100$. Additional tables are provided in~\aref{AppendixA} for the rest of the considered buffer sizes. The evolution of disclosure risk against the number of instances processed for the \texttt{MicroaggregationFilter} is shown in~\fref{fig:results-dr-ma} and information loss is shown in~\fref{fig:results-il-log-ma}.
 
 \begin{minipage}[t]{0.5\textwidth}
 	\begin{flushleft}
@@ -105,6 +113,10 @@ As was anticipated, the \texttt{NoiseAdditionFilter} \todo{TODO}
 	\end{flushright}
 \end{minipage}
 
+As shown in the tables above, the \texttt{MicroaggregationFilter} disclosure risk performance is almost the same for both streams (unlike the \texttt{NoiseAdditionFilter}). The total disclosure risk diminishes as the size of the clusters formed increases, which is a direct consequence of the theoretical privacy guarantee that microaggregation offers: because $k$-anonymity is implemented through this algorithmic scheme, the maximum disclosure risk for a given $k$ is $DR \leq 1/k$.
+
+The couple of figures included below show an interesting result of the microaggregation filter. Even though the size of the clusters does not affect too much the amount of noise introduced in the data (see~\fref{fig:results-il-log-ma}), the increase of the of the $k$ parameter offers much better privacy protection than that achieved with lower values. This is, we can anonymize data, obtaining good (low) disclosure risk and not losing too much utility in the process with respect to configurations that yield poorer disclosure risk results.
+
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.9\linewidth]{figures/dr_ma-random.pdf}
@@ -114,13 +126,17 @@ As was anticipated, the \texttt{NoiseAdditionFilter} \todo{TODO}
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.9\linewidth]{figures/il-log_na-random.pdf}
+	\includegraphics[width=0.9\linewidth]{figures/il-log_ma-random.pdf}
 	\caption[Microaggregation IL evaluation ($b = 100$), logarithmic scale.]{\texttt{MicroaggregationFilter} IL evaluation using the \texttt{RandomRBFGenerator} with fixed buffer size $b = 100$, for increasing $k$, on a logarithmic scale.}
 	\label{fig:results-il-log-ma}
 \end{figure}
 
+\clearpage
+
 \subsection{Rank swapping}
 \label{Benchmarking:Results:RankSwap}
+
+A comparison of the performance of the \texttt{RankSwappingFilter} on the streams produced by the \texttt{RandomRBFGenerator} and \texttt{WaveformGenerator} can be seen in~\tref{table:results-rbf-rankswap} and~\tref{table:results-wave-rankswap}. The remaining tables of results can be consulted in the~\aref{AppendixA}. \fref{fig:results-dr-rs} shows the disclosure risk estimation against the number of instances processed, for increasing values of the $p$ parameter and two buffer sizes ($b = 100$ and $b=500$). The information loss estimate of the corresponding parameterizations is shown in~\fref{fig:results-il-log-rs}.
 
 \begin{minipage}[t]{0.5\textwidth}
 	\begin{flushleft}
@@ -159,6 +175,10 @@ As was anticipated, the \texttt{NoiseAdditionFilter} \todo{TODO}
 	\end{flushright}
 \end{minipage}
 
+As we see in both~\tref{table:results-rbf-rankswap} and~\tref{table:results-wave-rankswap}, the maximum swap range, defined as the percentage $p$ of the size of the buffer, is indeed a key factor to achieve good results, concerning the disclosure risk of the anonymized data. Both tables show that, for swap ranges shorter than half the size of the window, the risk or fe-identification is too high.
+
+The remaining parameter of this filter, the size of the buffer, is also, in this case, an important factor to leverage when using the \texttt{RankSwappingFilter}. For bigger buffer sizes, the information loss incurred decreases, but the disclosure risk grows too much. The cause behind this increase in the revelation risk could be the usage of synthetical data: for bigger buffer sizes, because generated attribute values are sensibly close to each other, the difference between the swapped values is smaller, thus generating lower noise and exposing more information to an attacker.
+
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1.0\linewidth]{figures/dr_rs-random.pdf}
@@ -173,8 +193,21 @@ As was anticipated, the \texttt{NoiseAdditionFilter} \todo{TODO}
 	\label{fig:results-il-log-rs}
 \end{figure}
 
+\clearpage
+
 \subsection{$\varepsilon$-Differential private microaggregation}
 \label{Benchmarking:Results:DiffPriv}
+
+An aggregate of five ``subtables'' is shown in~\tref{table:results-random-diff-priv}: the disclosure risk and information loss results are assessed for increasing values of cluster size $k$, increasing differential privacy scale factors, controlled by the $\varepsilon$ parameter, and fixed historical buffer size $b = 250$. The complete set of results tables is located in~\aref{AppendixA}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.9\linewidth]{figures/dr_dp-e1-random.pdf}
+	\caption[Differential privacy DR evaluation ($b = 100,~\varepsilon = 1$).]{\texttt{DifferentialPrivacyFilter} DR evaluation using the \texttt{RandomRBFGenerator} with fixed buffer size $b = 100$ and fixed differential privacy scale parameter $\varepsilon = 1$, for increasing $k$.}
+	\label{fig:results-dr-dp-e1}
+\end{figure}
+
+The \texttt{DifferentialPrivacyFilter} performs really well in terms of disclosure risk, for any of the parameters combinations displayed. However, for small values of $\varepsilon$, the amount of noise added to data is really high. Confirming the hipothesis presented in~\sref{Implementation:DifferentialPrivacy:Design}, increasing the size of the clusters $k$ achieves a reduction in the sensitivity of the release function of the data, thus reducing the Laplacian noise introduced, thus reducing information loss. This effect can be seen for values of $\varepsilon$ up to $10$, but is not visible for $\varepsilon = 100$, because, for such a high $\varepsilon$, the majority of the added noise is indeed caused by the microaggregation function, not by the Laplace mechanism. This effect can also be assessed in~\fref{fig:results-il-dp-e1}, where the value of $\varepsilon$ is fixed and $k$ increases, effectively reducing information loss.
 
 \begin{table}[H]
 	\centering
@@ -249,13 +282,6 @@ As was anticipated, the \texttt{NoiseAdditionFilter} \todo{TODO}
 	\caption[Differential privacy DR \& IL estimations.]{Differential privacy DR \& IL estimations for increasing $\varepsilon$ and $k$ values and fixed buffer size ($b = 250$). Results from the execution with the \texttt{RandomRBFGenerator}.}
 	\label{table:results-random-diff-priv}
 \end{table}
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.9\linewidth]{figures/dr_dp-e1-random.pdf}
-	\caption[Differential privacy DR evaluation ($b = 100,~\varepsilon = 1$).]{\texttt{DifferentialPrivacyFilter} DR evaluation using the \texttt{RandomRBFGenerator} with fixed buffer size $b = 100$ and fixed differential privacy scale parameter $\varepsilon = 1$, for increasing $k$.}
-	\label{fig:results-dr-dp-e1}
-\end{figure}
 
 \begin{figure}[h]
 	\centering
