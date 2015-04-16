@@ -1,26 +1,3 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Masters/Doctoral Thesis
-% LaTeX Template
-% Version 1.43 (17/5/14)
-%
-% This template has been downloaded from:
-% http://www.LaTeXTemplates.com
-%
-% Original authors:
-% Steven Gunn
-% http://users.ecs.soton.ac.uk/srg/softwaretools/document/templates/
-% and
-% Sunil Patel
-% http://www.sunilpatel.co.uk/thesis-template/
-%
-% License:
-% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
-%
-% Note:
-% Make sure to edit document variables in the Thesis.cls file
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 %----------------------------------------------------------------------------------------
 %	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
@@ -48,6 +25,10 @@
 
 \usepackage[square, numbers, comma, sort&compress]{natbib} % Use the natbib reference package - read up on this to edit the reference style; if you want text (e.g. Smith et al., 2012) for the in-text references (instead of numbers), remove 'numbers'
 \title{\ttitle} % Defines the thesis title - don't touch this
+
+\newenvironment{poliabstract}[1]
+  {\renewcommand{\abstractname}{#1}\begin{abstract}}
+  {\end{abstract}}
 
 %----------------------------------------------------------------------------------------
 %	MAIN DOCUMENT CONTENTS AND FRONT MATTER
@@ -79,9 +60,6 @@
 \input{abstract}          % Thesis abstract
 \input{acknowledgements}  % Acknowledgements (family, friends...)
 \input{tables}            % TABLE OF CONTENTS, figures, tables, listings...
-%\input{abbreviations}     % Abbreviations used throughout the thesis
-%\input{symbols}           % List of symbols used
-\input{dedication}        % Dedication oneliner
 
 %----------------------------------------------------------------------------------------
 %	THESIS CONTENT - CHAPTERS
@@ -115,8 +93,6 @@
 % Uncomment the lines as you write the Appendices
 
 \input{appendices/appendix-A}
-%\input{Appendices/AppendixB}
-%\input{Appendices/AppendixC}
 
 \addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
 

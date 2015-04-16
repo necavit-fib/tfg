@@ -3,10 +3,67 @@
 %----------------------------------------------------------------------------------------
 
 \addtotoc{Abstract} % Add the "Abstract" page entry to the Contents
+\addtocontents{toc}{}
+\btypeout{Abstract Page}
+\thispagestyle{plain}
+\null\vfil
+\begin{center}
+	\setlength{\parskip}{0pt}
+	{\huge{\textit{Abstract}} \par}
+	\bigskip
+	{\Large\bf \ttitle \par} % Thesis title
+	\medskip
+	{\normalsize by \authornames \par} % Author name
+\end{center}
 
-\abstract{\addtocontents{toc}{\vspace{1em}} % Add a gap in the Contents, for aesthetics
+Data mining enables a better understanding of human and natural processes by analyzing massive amounts of data with machine learning algorithms. Stream mining is a process that allows us to discover knowledge in data when it comes in the form of a continuous stream. MOA, initials for Massive Online Analysis, is an open source data stream mining framework, developed at the University of Waikato, New Zealand. One of the available features in MOA is the use of filters, which can process streaming data before or after being fed to other subsystems, such as machine learning algorithms.
 
-The Thesis Abstract is written here (and usually kept to just this page). The page is kept centered vertically so can expand into the blank space above the title too.
-}
+Although data science has brought us many benefits, because the data being analyzed is often personal and sensitive, we face the threat of losing our privacy. Statistical Disclosure Control (SDC) deals with controlling that information about specific individuals is not extracted from released datasets, whilst maintaining the statistical significance of the masked data. By applying SDC techniques to data, disclosure is prevented, thus effectively protecting the privacy of the data owners.
+
+Four MOA \textit{privacy-preserving filters} have been developed in this project, which implement the following SDC methods: \textbf{noise addition}, \textbf{microaggregation}, data \textbf{rank swapping} and a \textbf{microaggregation based differential privacy} release mechanism. Each of the algorithms has been adapted from well-known solutions in order to enable their utilization for stream processing tasks. Finally, all four filters have been benchmarked to assess their quality in terms of two important SDC measurments: disclosure risk and information loss, this is, the risk of individuals re-identification and the utility of the resulting masked data, respectively.
+
+\clearpage % Start a new page
+
+\addtotoc{Abstract (Catalan)} % Add the "Abstract" page entry to the Contents
+\addtocontents{toc}{}
+\btypeout{Abstract Page}
+\thispagestyle{plain}
+\null\vfil
+\begin{center}
+	\setlength{\parskip}{0pt}
+	{\huge{\textit{Resum}} \par}
+	\bigskip
+	{\Large\bf \ttitle \par} % Thesis title
+	\medskip
+	{\normalsize per \authornames \par} % Author name
+\end{center}
+
+La mineria de dades ens ajuda a entendre millor els processos antropogènics i naturals, analitzant quantitats massives de dades, mitjançant algorismes d'aprenentatge automàtic. La mineria de \textit{fluxos} de dades és un paradigma d'anàlisi que ens permet extreure coneixement de les dades quan són rebudes en forma d'un flux continu. El paquet de programari MOA, de l'anglès \textit{Massive Online Analysis}, és un entorn de mineria de fluxos de codi obert, desenvolupat a la Universitat de Waikato, a Nova Zelanda. Una de les funcionalitats de MOA és la possibilitat d'utilitzar filtres, els quals processen les dades en flux abans o després de ser redirigides cap a altres sub-sistemes, com ara algorismes d'aprenentatge automàtic.
+
+Tot i que la ciència de la informació ens aporta molts beneficis, donat que les dades que s'analitzen són, sovint, personals i sensibles, ens trobem davant d'un escenari en el que la nostra privacitat està en perill. El camp del control de revelació estadística (SDC, de l'anglès \textit{Statistical Disclosure Control}) estudia mecanismes per controlar que la informació d'un individu específic no sigui extreta dels conjunts de dades publicades, alhora que s'intenta preservar la significació estadística de les dades emmascarades. Aplicant tècniques d'SDC, s'impedeix la re-identificació dels individus, protegint, per tant, la privacitat dels mateixos.
+
+En aquest projecte s'han desenvolupat quatre \textit{filtres de preservació de la privacitat} per l'entorn MOA, que implementen els següents mètodes d'SDC: \textbf{addició de soroll}, \textbf{microagregació}, \textbf{intercanvi de rangs} i un mecanisme de publicació de dades de \textbf{privacitat diferencial basada en microagregació}. Cadascun dels algorismes ha estat adaptat d'algun mètode ja conegut, en ús, per habilitar la seva utilització per a tasques de processament de fluxos. Finalment, tots quatre filtres han estat avaluats respecte de dues mesures molt importants en l'àmbit de l'SDC: el risc de revelació i la pèrdua d'informació, és a dir, el risc de re-identificació dels individus i la utilitat de les dades emmascarades, respectivament.
+
+\clearpage % Start a new page
+
+\addtotoc{Abstract (Spanish)} % Add the "Abstract" page entry to the Contents
+\addtocontents{toc}{\vspace{1em}}
+\btypeout{Abstract Page}
+\thispagestyle{plain}
+\null\vfil
+\begin{center}
+	\setlength{\parskip}{0pt}
+	{\huge{\textit{Resumen}} \par}
+	\bigskip
+	{\Large\bf \ttitle \par} % Thesis title
+	\medskip
+	{\normalsize por \authornames \par} % Author name
+\end{center}
+
+La minería de datos nos ayuda a entender mejor los procesos antropogénicos y naturales, analizando cantidades masivas de datos, mediante algoritmos de aprendizaje automático. La minería de \textit{flujos} datos es un paradigma de análisis que nos permite extraer conocimiento de los datos, cuando éstos son recibidos en forma de un flujo continuo. El paquete de software MOA, del inglés \textit{Massive Online Analysis}, es un entorno de minería de flujos de código abierto, desarrollado en la Universidad de Waikato, Nueva Zelanda. Una de las funcionalidades de MOA es la posibilidad de utilizar filtros, los cuales procesan los datos de los flujos antes o después de ser redirigidos hacia otros subsistemas, como los algoritmos de aprendizaje automático.
+
+Aunque la ciencia de la información nos aporta muchos beneficios, dado que los datos que se analizan son frecuentemente personales y sensibles, nos encontramos ante un escenario en el que nuestra privacidad está en peligro. El campo del control de revelación estadística (SDC, del inglés {Statistical Disclosure Control}) estudia los mecanismos para controlar que la información de un individuo específico no se extraiga de los conjuntos de datos publicados, a la vez que se intenta maximizar la significación estadística de los datos enmascarados. Aplicando técnicas de SDC, se impide la re-identificación de los individuos, protegiendo, por lo tanto, la privacidad de los mismos.
+
+En este proyecto se han desarrollado cuatro \textit{filtros de preservación de la privacidad} para el entorno MOA, que implementan los siguientes métodos de SDC: \textbf{adición de ruido}, \textbf{microagregación}, \textbf{intercanvio de rangos} y un mecanismo de publicación de datos de \textbf{privacidad diferencial basada en microagregación}. Cada uno de los algoritmos ha sido adaptado de algun método ya conocido y en uso, para habilitar su utilización para tareas de procesamiento de flujos. Finalmente, los cuatro filtros se han evauado respecto dos medidas muy importantes en el ámbito del SDC: el riesgo de revelación y la pérdida de información, es decir, el riesgo de re-identificación de los individuos y la utilidad de los datos enmascarados, respectivamente.
 
 \clearpage % Start a new page
